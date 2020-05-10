@@ -1,0 +1,31 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "nodemonConfig": {
+    "ignore": [
+      "saved/**"
+    ]
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.3.2",
+    "mongoose": "^5.6.12",
+    "q": "^1.5.1",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  },
+  "scripts": {
+    "start-on-heroku": "node index.js",
+    "start-on-develop": "$(npm bin)/nodemon index.js",
+    "start": "[ \"$ENVIRONMENT\" = \"dev\" ] && npm run-script start-on-develop || npm run-script start-on-heroku",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "λ": "yarn install && yarn start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
