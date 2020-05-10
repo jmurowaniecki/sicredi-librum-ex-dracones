@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Librum ex Dracones</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="./assets/favicon/favicon.ico">
   <style>
     @font-face {
       font-family: 'Bilbo';
@@ -71,10 +72,33 @@
         text-shadow: 0 0 0px rgba(255, 0, 0, 0);
       }
     }
+
+    .show .loader .dragon-eye {
+      opacity: 0;
+    }
+
+    .dragon-eye {
+      margin: -50px auto 0;
+      width: 100px;
+      height: 100px;
+      transition: opacity .2s;
+      background: url(./assets/image/dragoneye.png) no-repeat;
+      -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+      filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
   </style>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#1976d2">
 </head>
+
 <body>
-  <div class="loader">Aguarde, carregando.</div>
+  <div class="loader">
+    <div class="dragon-eye"></div>
+    Aguarde, carregando.
+  </div>
+
   <app-root></app-root>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>
+
 </html>
