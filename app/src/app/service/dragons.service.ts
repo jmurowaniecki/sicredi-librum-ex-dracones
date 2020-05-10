@@ -12,7 +12,8 @@ export class DragonsService {
       type: "Dragão de Fogo",
       period: "2780 a.J. - 128 d.J.",
       image: "./assets/image/dragon/dragon0.png",
-      avatar: "./assets/image/dragon/dragon0-face.png"
+      avatar: "./assets/image/dragon/dragon0-face.png",
+      landscape: "./assets/image/dragon/landscape0.jpg"
     },
     {
       name: "Jôrthungd'Al",
@@ -20,7 +21,8 @@ export class DragonsService {
       type: "Dragão de Fogo",
       period: "2780 a.J. - 128 d.J.",
       image: "./assets/image/dragon/dragon1.png",
-      avatar: "./assets/image/dragon/dragon1-face.png"
+      avatar: "./assets/image/dragon/dragon1-face.png",
+      landscape: "./assets/image/dragon/landscape1.jpg"
     },
     {
       name: "Jôrthungd'Al",
@@ -28,7 +30,8 @@ export class DragonsService {
       type: "Dragão de Fogo",
       period: "2780 a.J. - 128 d.J.",
       image: "./assets/image/dragon/dragon2.png",
-      avatar: "./assets/image/dragon/dragon2-face.png"
+      avatar: "./assets/image/dragon/dragon2-face.png",
+      landscape: "./assets/image/dragon/landscape2.jpg"
     },
     {
       name: "Jôrthungd'Al",
@@ -36,7 +39,8 @@ export class DragonsService {
       type: "Dragão de Fogo",
       period: "2780 a.J. - 128 d.J.",
       image: "./assets/image/dragon/dragon3.png",
-      avatar: "./assets/image/dragon/dragon3-face.png"
+      avatar: "./assets/image/dragon/dragon3-face.png",
+      landscape: "./assets/image/dragon/landscape3.jpg"
     },
     {
       name: "Jôrthungd'Al",
@@ -44,7 +48,8 @@ export class DragonsService {
       type: "Dragão de Fogo",
       period: "2780 a.J. - 128 d.J.",
       image: "./assets/image/dragon/dragon4.png",
-      avatar: "./assets/image/dragon/dragon4-face.png"
+      avatar: "./assets/image/dragon/dragon4-face.png",
+      landscape: "./assets/image/dragon/landscape4.jpg"
     }
   ];
 
