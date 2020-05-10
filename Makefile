@@ -81,7 +81,7 @@ define TRY_INSTALL
 export  BUILD_FILE=".last-build.error"; \
 rm -f $$BUILD_FILE; \
 docker-compose build --force-rm 2>$$BUILD_FILE \
-	&&( echo "\\n" $(MESSAGEINSTALL) "\\n" ) \
+	&&( rm -f $${BUILD_FILE}; echo "\\n" $(MESSAGEINSTALL) "\\n" ) \
 	||( ERROR=$$(tail -n1 $$BUILD_FILE|\
 			sed -E 's/.*Errno.*\] (.*)/\1/');\
 		LINE=$$(cat $$BUILD_FILE | grep -n "Traceback" | awk -F':' '''''{print($$1)}'); \
@@ -119,12 +119,17 @@ circleci-qa: circleci-pre-process #- Runs CircleCI quality workflow locally.
 launch: check # Launch application.
 	@( docker-compose up -d ); \
 	HOST="$(PROJECT_ADDR)""" ; \
-	[ -z "$${HOST}" ] && HOST="http://localhost"; \
-	echo "Project up on $(BOLD)'$$HOST'$(/BOLD)"; \
-	sleep  x-www-browser "$${HOST}"
+	[ -z "$${HOST}" ] && HOST="http://localhost/"; \
+	echo "\n- Launched app: http://$(BOLD)"$$HOST"$(/BOLD)"; \
+	sleep 1; x-www-browser "http://""""""""$$HOST"
 
 launch-debug:
-	@( docker-compose up    )
+	@( docker-compose up )
+
+
+lint-app:
+	@docker-compose run app ./node_modules/.bin/tslint --project .
+
 
 
 #

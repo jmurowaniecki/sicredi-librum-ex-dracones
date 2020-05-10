@@ -1,0 +1,29 @@
+#
+# TITLE      : Editor config manifest file.
+# VERSION    : 0.1.0-5 gracious mistake
+# AUTHOR     : John Murowaniecki <jmurowaniecki[at]gmail.com>
+# REPOSITORY : https://github.com/jmurowaniecki
+# DESCRIPTION: EditorConfig helps maintain consistent coding
+#              styles for multiple developers working on the
+#              same project across various editors and IDEs…
+#              https://editorconfig.org/
+#
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+indent_size = 4
+
+[Makefile]
+indent_style = tab
+
+[*.{xml,apib,sh,conf,Dockerfile}]
+charset = utf-8
+indent_style = space
+indent_size = 4
+
+[*.{{j,t}s{,on},{ht,y{,a}}ml,md,css}]
+charset = utf-8
+indent_style = space
+indent_size = 2

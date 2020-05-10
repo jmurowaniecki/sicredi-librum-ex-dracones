@@ -26,8 +26,8 @@ services:
     build: ./app
     environment:
       APP_NAME: "${PROJECT_NAME}"
-      APP_ENV : ${ENVIRONMENT}
       APP_URL : ${APP_URL}
+      ENVIRONMENT: ${ENVIRONMENT}
     volumes:
       - ./app:/application
     networks:
@@ -38,7 +38,7 @@ services:
     environment:
       APP_NAME   : "${PROJECT_NAME}"
       APP_URL    : ${APP_URL}
-      APP_ENV    : ${ENVIRONMENT}
+      ENVIRONMENT: ${ENVIRONMENT}
       DB_HOST    : ${DB_HOSTNAME}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_DATABASE: ${DB_DATABASE}
