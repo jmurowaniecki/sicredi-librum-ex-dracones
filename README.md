@@ -55,7 +55,14 @@ O author também é RPGista, guitarrista, artista marcial e atirador. Carrega a 
 
 # Agradecimentos
 
-Este exemplo utiliza as bibliotecas [uifx de wle8300](https://github.com/wle8300/uifx) para os efeitos sonoros (https://freesound.org/people/digifishmusic/sounds/65231/, https://freesound.org/people/ldezem/sounds/386216/, https://freesound.org/people/Juane170058/sounds/407543/, https://freesound.org/people/jorickhoofd/sounds/160045/, https://freesound.org/people/InspectorJ/sounds/411576/, https://freesound.org/people/Jeffreys2/sounds/333469/, https://freesound.org/people/ScarHand4200/sounds/443738/, https://freesound.org/people/Mega-X-stream/sounds/427414/, https://freesound.org/people/Mega-X-stream/sounds/427414/, https://freesound.org/people/cylon8472/sounds/249686/, https://freesound.org/people/NicknameLarry/sounds/489901/, https://freesound.org/people/ecfike/sounds/132866/, https://freesound.org/people/quadraslayer/sounds/398908/, https://freesound.org/people/juanlopz08/sounds/389498/, https://freesound.org/people/johnnypanic/sounds/34567/, https://freesound.org/people/lonemonk/sounds/352380/)
+Este exemplo utiliza as bibliotecas [pizzicato de alemangui](https://github.com/alemangui/pizzicato) para as músicas de fundo e demais efeitos sonoros. Músicas e efeitos sonoros obtidos através de [FreeSound.org](https://freesound.org/) licenciados em sua maioria como Creative Commons ou uso particular.
+
+As imagens foram extraídas de [PNG find](https://www.pngfind.com/) em sua maioria como licença Creative Commons ou uso particular, e foram em parte reconstituídas e modificadas artisticamente para se adequar ao design preservando a arte original.
+
+
+
+
+ (https://freesound.org/people/digifishmusic/sounds/65231/, https://freesound.org/people/ldezem/sounds/386216/, https://freesound.org/people/Juane170058/sounds/407543/, https://freesound.org/people/jorickhoofd/sounds/160045/, https://freesound.org/people/InspectorJ/sounds/411576/, https://freesound.org/people/Jeffreys2/sounds/333469/, https://freesound.org/people/ScarHand4200/sounds/443738/, https://freesound.org/people/Mega-X-stream/sounds/427414/, https://freesound.org/people/Mega-X-stream/sounds/427414/, https://freesound.org/people/cylon8472/sounds/249686/, https://freesound.org/people/NicknameLarry/sounds/489901/, https://freesound.org/people/ecfike/sounds/132866/, https://freesound.org/people/quadraslayer/sounds/398908/, https://freesound.org/people/juanlopz08/sounds/389498/, https://freesound.org/people/johnnypanic/sounds/34567/, https://freesound.org/people/lonemonk/sounds/352380/)
 
 Fire https://freesound.org/people/dobroide/sounds/65748/, https://freesound.org/people/tc630/sounds/47835/
 

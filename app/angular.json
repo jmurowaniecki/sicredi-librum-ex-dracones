@@ -31,7 +31,9 @@
             "styles": [
               "src/styles.sass"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/pizzicato/distr/Pizzicato.min.js"
+            ]
           },
           "configurations": {
             "production": {

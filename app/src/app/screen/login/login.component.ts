@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SoundService } from 'src/app/service/sound.service';
 
 @Component({
   selector: 'login',
@@ -7,9 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sound: SoundService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

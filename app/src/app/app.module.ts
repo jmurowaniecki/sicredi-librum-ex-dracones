@@ -11,6 +11,7 @@ import { PannelComponent } from './screen/pannel/pannel.component';
 import { SidebarComponent } from './screen/pannel/sidebar/sidebar.component';
 import { StageComponent } from './screen/pannel/stage/stage.component';
 import { DragonComponent } from './screen/pannel/dragon/dragon.component';
+import { SoundService } from './service/sound.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { DragonComponent } from './screen/pannel/dragon/dragon.component';
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [StatusService],
+  providers: [StatusService, SoundService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
