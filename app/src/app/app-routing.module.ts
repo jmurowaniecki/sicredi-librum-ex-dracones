@@ -6,10 +6,13 @@ import { PannelComponent } from './screen/pannel/pannel.component';
 
 const routes: Routes = [
   {
-    path: "", component: LoginComponent
+    path: '', redirectTo: 'login', pathMatch: 'full'
   },
   {
-    path: "pannel", component: PannelComponent
+    path: 'login', component: LoginComponent
+  },
+  {
+    path: 'pannel', component: PannelComponent
   },
 ];
 
