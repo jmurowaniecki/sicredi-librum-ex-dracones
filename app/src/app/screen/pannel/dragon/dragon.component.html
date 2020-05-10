@@ -1,11 +1,11 @@
-<div class="inside-stage">
+<div class="inside-stage" [style]="'background-image: url('.concat(Dragon.landscape, ')')">
 
-  <div class="dragon"></div>
+  <div class="dragon" [style]="'background-image: url('.concat(Dragon.image, ')')"></div>
 
   <a class="scroll" href="#" routerLink="dragonDetail">
-    <span>"Quem com fogo fere, churrasco será servido."</span>
-    <i>2780 a.J. - 128 d.J.</i>
-    <span>Dragão de Fogo</span>
-    <p class="name">Jôrthungd'Al</p>
+    <span>{{ Dragon.description }}</span>
+    <i>{{ Dragon.period }}</i>
+    <span>{{ Dragon.type }}</span>
+    <p class="name">{{ Dragon.name }}</p>
   </a>
 </div>

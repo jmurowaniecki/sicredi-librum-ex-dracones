@@ -11,16 +11,25 @@ import { Observable } from 'rxjs';
 })
 export class DragonComponent implements OnInit {
 
+  private selected: any = 0;
+
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private service: DragonsService,
+    private dragon: DragonsService,
     ) { }
 
-  ngOnInit(): void {
-    // this.service.getHero(params.get('id')))
+  get Dragon() {
+    return this.dragon.list[this.selected]
+  }
 
-    console.log(this.route.snapshot.paramMap.get('id'));
+  ngOnInit(): void {
+    this.selected = this.route.snapshot
+      .paramMap.get('id');  // This is NOT a POG..
+                            // It's just in case of fail to Observe.. (;
+
+    this.route.params.subscribe(params => {
+      this.selected = params['id'];
+    });
   }
 
 }
