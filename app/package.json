@@ -23,6 +23,7 @@
     "@angular/service-worker": "~9.1.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
+    "uifx": "^2.0.7",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
