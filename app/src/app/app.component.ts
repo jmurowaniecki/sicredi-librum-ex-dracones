@@ -12,6 +12,6 @@ export class AppComponent implements AfterViewInit {
     setTimeout(() => {
       document.body.classList.toggle('show');
       setTimeout(() => document.body.classList.toggle('ready'), 1000);
-    }, 3000);
+    }, 666);
   }
 }

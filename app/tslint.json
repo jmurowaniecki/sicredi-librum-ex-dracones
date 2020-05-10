@@ -25,8 +25,7 @@
     "component-selector": [
       true,
       "element",
-      "app",
-      "kebab-case"
+      "app"
     ],
     "eofline": true,
     "import-blacklist": [
