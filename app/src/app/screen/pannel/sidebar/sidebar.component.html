@@ -1,11 +1,17 @@
 <div class="container">
-  <button *ngFor="let dragon of Dragons.list" class="button round dragon-face">
+
+  <button *ngFor="let dragon of Dragons.list"
+    [routerLink]="['/dragon', dragon.id]"
+    [class]="'button round dragon-face '.concat(dragon.selected ? 'selected' : '')">
     <img src="{{ dragon.avatar }}" title="{{ dragon.name }}" alt="{{ dragon.name }}">
   </button>
+
   <span class="stretch"></span>
+
   <button class="button round dragon-face">
     <img src="/assets/image/dragoneye.png" title="More Dragons" alt="Open modal of Dragons!">
   </button>
+
   <button class="button round dragon-face" routerLink="/login">
     Sair
   </button>

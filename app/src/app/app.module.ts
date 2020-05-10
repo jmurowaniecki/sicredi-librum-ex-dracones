@@ -10,6 +10,7 @@ import { environment } from '../environments/environment';
 import { PannelComponent } from './screen/pannel/pannel.component';
 import { SidebarComponent } from './screen/pannel/sidebar/sidebar.component';
 import { StageComponent } from './screen/pannel/stage/stage.component';
+import { DragonComponent } from './screen/pannel/dragon/dragon.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { StageComponent } from './screen/pannel/stage/stage.component';
     LoginComponent,
     PannelComponent,
     SidebarComponent,
-    StageComponent
+    StageComponent,
+    DragonComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './screen/login/login.component';
 import { PannelComponent } from './screen/pannel/pannel.component';
+import { DragonComponent } from './screen/pannel/dragon/dragon.component';
 
 
 const routes: Routes = [
@@ -12,8 +13,31 @@ const routes: Routes = [
     path: 'login', component: LoginComponent
   },
   {
-    path: 'pannel', component: PannelComponent
+    path: 'dragons',
+    component: PannelComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: '/dragon/1',
+        pathMatch: 'full'
+      }
+    ]
   },
+  {
+    path: 'dragon',
+    component: PannelComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: '/dragon/1',
+        pathMatch: 'full'
+      },
+      {
+        path: ':id',
+        component: DragonComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({

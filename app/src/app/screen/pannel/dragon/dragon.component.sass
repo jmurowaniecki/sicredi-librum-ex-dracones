@@ -1,0 +1,72 @@
+
+:root
+    --mouseX: 0
+    --mouseY: 0
+
+
+
+.inside-stage
+    width: 100%
+    height: 100%
+    background: url(/assets/image/dragon/landscape1.jpg)
+    background-size: cover
+    box-shadow: inset 10px 10px 30px 10px rgba(0, 0, 0, 1)
+    flex-grow: auto
+    display: flex
+
+
+    & .dragon
+        top: 0
+        right: 0
+        width: 100%
+        height: 100%
+        background-image: url(/assets/image/dragon/dragon0.png)
+        background-repeat: no-repeat
+        background-position: top right
+        background-size: contain
+        transform: top scale(.75)
+        size: .2
+        -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1))
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1))
+        background-position: calc(100% - var(--mouseX) * 0.1%) top
+        background-size: calc(80% - var(--mouseY) * 0.1%)
+
+    .scroll
+        position: fixed
+        top: -200px
+        right: 10%
+        background: url(/assets/image/scroll.png) 0 -10px no-repeat
+        width: 193px
+        height: 300px
+        padding: 15px 20px
+        overflow: hidden
+        text-align: center
+        transition: top .8s
+        -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1))
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1))
+        color: rgba(255, 255, 255, 1)
+        font-size: 25px
+        line-height: 15px
+
+
+        &:hover, &:focus
+            top: 0
+
+        & p
+            font-size: 25px
+            text-align: center
+
+        & i
+            font-size: 20px
+
+        & span
+            font-size: 30px
+            line-height: 30px
+            height: 130px
+            display: block
+
+        & span:last-of-type
+            height: 60px !important
+
+        .name
+            font-size: 33px
