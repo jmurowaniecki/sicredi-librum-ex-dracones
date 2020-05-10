@@ -1,0 +1,70 @@
+#
+# TITLE      : Docker compose manifest file.
+# VERSION    : 0.1.0-5 gracious mistake
+# AUTHOR     : John Murowaniecki <jmurowaniecki[at]gmail.com>
+# REPOSITORY : https://github.com/jmurowaniecki
+# DESCRIPTION: Build and launch local environment in a snap.
+#
+version: "3"
+services:
+
+  proxy:
+    environment:
+      NGINX_PORT : 80
+      ENVIRONMENT: ${ENVIRONMENT}
+    build: ./.../proxy
+    restart: always
+    ports:
+      - 80:80
+    links:
+      - api
+      - app
+    networks:
+      - local
+
+  app:
+    build: ./app
+    environment:
+      APP_NAME: "${PROJECT_NAME}"
+      APP_ENV : ${ENVIRONMENT}
+      APP_URL : ${APP_URL}
+    volumes:
+      - ./app:/application
+    networks:
+      - local
+
+  api:
+    build: ./api
+    environment:
+      APP_NAME   : "${PROJECT_NAME}"
+      APP_URL    : ${APP_URL}
+      APP_ENV    : ${ENVIRONMENT}
+      DB_HOST    : ${DB_HOSTNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_USERNAME: ${DB_USERNAME}
+    volumes:
+      - ./api:/application
+    networks:
+      - local
+    links:
+      - database
+
+  database:
+    build: .../database
+    environment:
+      ENVIRONMENT        : ${ENVIRONMENT}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE     : ${DB_DATABASE}
+      MYSQL_PASSWORD     : ${DB_PASSWORD}
+      MYSQL_USER         : ${DB_USERNAME}
+    volumes:
+      - .../database/mysql:/var/lib/mysql
+      - .../database/logs:/var/logs
+      - .../database/custom.cnf:/etc/mysql/conf.d/custom.cnf
+    networks:
+      - local
+
+networks:
+  local:

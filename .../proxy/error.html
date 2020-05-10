@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ops</title>
+</head>
+<body>
+    <h1>Something wrong happens</h1>
+    <h2>Try again in <span id="seconds">10</span> seconds..</h2>
+</body>
+<script>
+    var interval = setInterval(function () {
+        let remaining = document.querySelector('#seconds'),
+            seconds   = parseInt(remaining.innerText, 10) || 10;
+        if (seconds-- < 5) {
+            window.location.reload();
+        }
+        remaining.innerHTML = seconds;
+    }, 1000);
+</script>
+</html>
