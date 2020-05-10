@@ -59,7 +59,7 @@ export class DragonsService {
       avatar: './assets/image/dragon/dragon4-face.png',
       landscape: './assets/image/dragon/landscape2.jpg'
     }]) {
-      dragon['selected'] = dragon.selected || false;
+      dragon.selected = dragon.selected || false;
       this.list.push(dragon);
     }
   }

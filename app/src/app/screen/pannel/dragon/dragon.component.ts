@@ -19,7 +19,7 @@ export class DragonComponent implements OnInit {
     ) { }
 
   get Dragon() {
-    return this.dragon.list[this.selected]
+    return this.dragon.list[this.selected];
   }
 
   ngOnInit(): void {
@@ -28,7 +28,7 @@ export class DragonComponent implements OnInit {
                             // It's just in case of fail to Observe.. (;
 
     this.route.params.subscribe(params => {
-      this.selected = params['id'];
+      this.selected = params.id;
     });
   }
 
