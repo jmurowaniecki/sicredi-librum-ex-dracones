@@ -10,12 +10,6 @@ export class SidebarComponent implements OnInit {
 
   constructor(public Dragons: DragonsService) { }
 
-  // get Dragons() {
-  //   console.log(this.dragonsService);
-  //   return this.dragonsService.list;
-  // }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }
