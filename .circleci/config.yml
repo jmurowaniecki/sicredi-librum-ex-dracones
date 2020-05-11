@@ -102,6 +102,22 @@ commands:
             docker push << parameters.namespace >>:<< parameters.target >>
 
 
+  docker-pull:
+    description: "Pull containers from source."
+    parameters:
+      description:
+        type: string
+      tag:
+        type: string
+      origin:
+        type: string
+        default: ${DOCKER_USERNAME}/${APP}
+    steps:
+      - run:
+          name: << parameters.description >>
+          command: |
+            docker pull << parameters.origin >>:<< parameters.tag >>
+
 
 jobs:
 
@@ -164,6 +180,9 @@ jobs:
       - setup-versioning
 
       - docker-login
+      - docker-pull
+          description: Pull the latest container from this repository.
+          tag: latest
 
       - run: |
           if [[ $(command -v heroku) == "" ]]; then
@@ -179,7 +198,6 @@ jobs:
           heroku config:set HEROKU_API_KEY=${HEROKU_API_KEY} -a ${HEROKU_APP}
           export            HEROKU_API_KEY=${HEROKU_API_KEY}
 
-      - run: docker pull
       - docker-clone:
           description: Clone container to Heroku namespace.
           source: latest
