@@ -154,11 +154,18 @@ workflows:
       - build:
         parameters:
           requires:
+            - update
             - quality
           filters:
             branches:
               only: master
 
       - deploy:
+        parameters:
           requires:
+            - update
+            - quality
             - build
+          filters:
+            branches:
+              only: master
