@@ -149,6 +149,8 @@ workflows:
             - update
 
       - build:
+          requires:
+            - quality
         parameters:
           filters:
             branches:

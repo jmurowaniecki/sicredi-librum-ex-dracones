@@ -40,13 +40,8 @@ API_URL=http://api.localhost
 Os containers são atualizados sempre que houver alteração nos ramos principais do repositório e estarão disponíveis publicamente no [Docker Hub][url-dockerhub] de forma automatizada via [CircleCI][url-circleci].
 
 
+
 ## Sobre
-Desenvolvedor apaixonado, tem fixação por quebra-cabeças e em busca constante de desafios.
-
-Fascinado por astronomia, física quântica, energia (e matéria) escura, inflação e destino entrópico do multiverso, alquimista e claro: coach de biohacking quântico, neuroprogramação, pseudocientista, astrólogo mentor de **η+1** desavisados.
-
-O author também é RPGista, guitarrista, artista marcial e atirador. Carrega a culpa de quebrar constantemente a 4ª parede com extensos monólogos.
-
 <!-- Makefile:about -->
 [![linkedin ][ico-linkedin ]](https://www.linkedin.com/in/php-developer)
 [![Twitter  ][ico-twitter  ]](https://twitter.com/0xD3C0D3)
@@ -54,16 +49,14 @@ O author também é RPGista, guitarrista, artista marcial e atirador. Carrega a 
 [![instagram][ico-instagram]](https://instagram.com/john.bmp)
 <!-- Makefile:/about -->
 
+Desenvolvedor apaixonado, tem fixação por quebra-cabeças e em busca constante de desafios.
+
+Fascinado por astronomia, física quântica, energia (e matéria) escura, inflação e destino entrópico do multiverso, alquimista e claro: coach de biohacking quântico, neuroprogramação, pseudocientista, astrólogo mentor de **η+1** desavisados.
+
+O author também é RPGista, guitarrista, artista marcial e atirador. Carrega a culpa de quebrar constantemente a 4ª parede com extensos monólogos.
 
 
-[](ASSETS)
 
-[ico-twitter  ]: https://img.shields.io/badge/Twitter-0xD3C0D3-6f42c1?style=flat-square&logo=twitter&logoColor=fff
-[ico-instagram]: https://img.shields.io/badge/Instagram-john.bmp-d73a49?style=flat-square&logo=instagram&logoColor=fff
-[ico-linkedin ]: https://img.shields.io/badge/linkedin-php--developer-1488C6?style=flat-square&logo=linkedin&logoColor=fff
-[ico-github   ]: https://img.shields.io/badge/github-jmurowaniecki-0366d6?style=flat-square&logo=github&logoColor=fff
-[ico-dockerhub]: https://img.shields.io/badge/λ::dev-sicredi-099cec?style=flat-square&logo=docker&logoColor=fff
-[ico-circleci]: https://img.shields.io/circleci/build/github/jmurowaniecki/sicredi-librum-ex-dracones?label=CircleCI&logo=circleci&style=flat-square&token=b9fd25eb908755fd60791b8b3bee30e4641ac9e7
 
 ## Hic svnt dracones
 ###### Agradecimentos
@@ -77,3 +70,14 @@ Inspiração no trabalho artístico de Diablo - UI e OST -, Rhapsody of Fire e *
 Nenhum plugin foi utilizado para os efeitos de paralax nos dragões - _nenhum dragão foi ferido fora dos tabuleiros_.
 
 _**Labor improbus omnia vincit** - Publius Vergilius Maro._
+
+
+
+[](ASSETS)
+
+[ico-twitter  ]: https://img.shields.io/badge/Twitter-0xD3C0D3-6f42c1?style=flat-square&logo=twitter&logoColor=fff
+[ico-instagram]: https://img.shields.io/badge/Instagram-john.bmp-d73a49?style=flat-square&logo=instagram&logoColor=fff
+[ico-linkedin ]: https://img.shields.io/badge/linkedin-php--developer-1488C6?style=flat-square&logo=linkedin&logoColor=fff
+[ico-github   ]: https://img.shields.io/badge/github-jmurowaniecki-0366d6?style=flat-square&logo=github&logoColor=fff
+[ico-dockerhub]: https://img.shields.io/badge/λ::dev-sicredi-099cec?style=flat-square&logo=docker&logoColor=fff
+[ico-circleci]: https://img.shields.io/circleci/build/github/jmurowaniecki/sicredi-librum-ex-dracones?label=CircleCI&logo=circleci&style=flat-square&token=b9fd25eb908755fd60791b8b3bee30e4641ac9e7
