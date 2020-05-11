@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DragonsService } from 'src/app/service/dragons.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'sidebar',
@@ -8,7 +9,9 @@ import { DragonsService } from 'src/app/service/dragons.service';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(public Dragons: DragonsService) { }
+  constructor(
+    public Dragons: DragonsService
+    ) { }
 
   ngOnInit(): void { }
 

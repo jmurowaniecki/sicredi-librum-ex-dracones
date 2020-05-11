@@ -14,6 +14,7 @@ import { DragonComponent } from './screen/pannel/dragon/dragon.component';
 import { SoundService } from './service/sound.service';
 import { AdminComponent } from './screen/pannel/admin/admin.component';
 import { AdminFormComponent } from './screen/pannel/admin/adminform.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { AdminFormComponent } from './screen/pannel/admin/adminform.component';
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [StatusService, SoundService],
+  providers: [StatusService, SoundService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

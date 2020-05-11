@@ -5,6 +5,7 @@ import { PannelComponent } from './screen/pannel/pannel.component';
 import { DragonComponent } from './screen/pannel/dragon/dragon.component';
 import { AdminComponent } from './screen/pannel/admin/admin.component';
 import { AdminFormComponent } from './screen/pannel/admin/adminform.component';
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
@@ -15,8 +16,11 @@ const routes: Routes = [
     path: 'login', component: LoginComponent
   },
   {
+    path: 'logout', component: LoginComponent
+  },
+  {
     path: 'dragons',
-    component: PannelComponent,
+    component: PannelComponent, canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -35,7 +39,7 @@ const routes: Routes = [
   },
   {
     path: 'dragon',
-    component: PannelComponent,
+    component: PannelComponent, canActivate: [AuthGuard],
     children: [
       {
         path: '',
