@@ -96,6 +96,7 @@ commands:
       - run:
           name: << parameters.description >>
           command: |
+            docker pull << parameters.origin    >>:<< parameters.source >>
             docker tag  << parameters.origin    >>:<< parameters.source >> \
                         << parameters.namespace >>:<< parameters.target >>
             docker push << parameters.namespace >>:<< parameters.target >>
@@ -178,6 +179,7 @@ jobs:
           heroku config:set HEROKU_API_KEY=${HEROKU_API_KEY} -a ${HEROKU_APP}
           export            HEROKU_API_KEY=${HEROKU_API_KEY}
 
+      - run: docker pull
       - docker-clone:
           description: Clone container to Heroku namespace.
           source: latest
