@@ -152,7 +152,6 @@ workflows:
             - update
 
       - build:
-        parameters:
           requires:
             - update
             - quality
@@ -161,7 +160,6 @@ workflows:
               only: master
 
       - deploy:
-        parameters:
           requires:
             - update
             - quality
