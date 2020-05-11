@@ -149,9 +149,9 @@ workflows:
             - update
 
       - build:
+        parameters:
           requires:
             - quality
-        parameters:
           filters:
             branches:
               only: master
