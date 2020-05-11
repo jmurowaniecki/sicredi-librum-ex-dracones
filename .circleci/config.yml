@@ -153,7 +153,6 @@ workflows:
 
       - build:
           requires:
-            - update
             - quality
           filters:
             branches:
@@ -161,8 +160,6 @@ workflows:
 
       - deploy:
           requires:
-            - update
-            - quality
             - build
           filters:
             branches:
