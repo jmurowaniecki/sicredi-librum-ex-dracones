@@ -1,6 +1,15 @@
 version: 2.1
 
+parameters:
+
+  CLI:
+    type: string
+    default: ${CLI}
+
+
+
 executors:
+
   buildpack:
     docker:
       - image: circleci/buildpack-deps:stretch
@@ -15,17 +24,13 @@ executors:
 
 
 
-jobs:
+commands:
 
-  build:
-    machine: true
-    parameters:
-      CLI:
-        type: string
-        default: ""
+  setup-versioning:
+    description: "Setup GIT versioning."
     steps:
       - when:
-          condition: << parameters.CLI >>
+          condition: << pipeline.parameters.CLI >>
           steps:
             - run:
                 name: Local build handling.
@@ -39,32 +44,80 @@ jobs:
                   fi
             - checkout
       - unless:
-          condition: not << parameters.CLI >>
+          condition: << pipeline.parameters.CLI >>
           steps:
             - attach_workspace:
                 at: .
+
+  docker-login:
+    description: "Performs login on DockerHub"
+    steps:
       - run:
           name: Dockerhub authentication.
-          command: echo -n "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
-
-      - run:
-          name: Build and push work in progress for APP.
           command: |
-            docker build -t ${DOCKER_USERNAME}/${APP}:bloated . -f ./app/Dockerfile
-            docker push     ${DOCKER_USERNAME}/${APP}:bloated
+            echo -n "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
 
-      - run:
-          name: Push dated container to Dockerhub.
-          command: |
-            DOCKER_LAST=${DOCKER_USERNAME}/${APP}:tmp-$(date +'%Y%m%d%H%I%S')
-            docker tag  ${DOCKER_USERNAME}/${APP}:bloated ${DOCKER_LAST}
-            docker push ${DOCKER_LAST}
 
+
+  docker-build:
+    description: "Build and push work in progress for APP."
+    parameters:
+      file:
+        type: string
+      description:
+        type: string
+      tag:
+        type: string
+    steps:
       - run:
-          name: Build and push latest TAG for APP.
+          name: << parameters.description >>
           command: |
-            docker build -t ${DOCKER_USERNAME}/${APP}:latest . -f ./app/BUILD.Dockerfile
-            docker push     ${DOCKER_USERNAME}/${APP}:latest
+            docker build -t ${DOCKER_USERNAME}/${APP}:<< parameters.tag >> . -f << parameters.file >>
+            docker push     ${DOCKER_USERNAME}/${APP}:<< parameters.tag >>
+
+
+
+  docker-clone:
+    description: "Build and push work in progress for APP."
+    parameters:
+      description:
+        type: string
+      source:
+        type: string
+      target:
+        type: string
+    steps:
+      - run:
+          name: << parameters.description >>
+          command: |
+            docker tag  ${DOCKER_USERNAME}/${APP}:<< parameters.source >> ${DOCKER_USERNAME}/${APP}:<< parameters.target >>
+            docker push ${DOCKER_USERNAME}/${APP}:<< parameters.target >>
+
+
+
+jobs:
+
+  build:
+    machine: true
+    steps:
+      - setup-versioning
+
+      - docker-login
+
+      - docker-build:
+          description: Build and push work in progress for APP.
+          file: ./app/Dockerfile
+          tag: bloated
+
+      - docker-clone:
+          description: Push dated container to Dockerhub.
+          source: bloated
+          target: tmp-$(date +'%Y%m%d%H%I%S')
+
+      - docker-build:
+          description: Build and push latest TAG for APP.
+          file: ./app/BUILD.Dockerfile
+          tag: latest
 
 
 
@@ -98,31 +151,10 @@ jobs:
 
   deploy:
     machine: true
-    environment:
-      HEROKU_APP: sicredi
     steps:
-      - when:
-          condition: << parameters.CLI >>
-          steps:
-            - run:
-                name: Local build handling.
-                command: |
-                  if [[ ${CIRCLE_SHELL_ENV} =~ "localbuild" ]]
-                  then if [ -d /workdir ]
-                    then ln -s /workdir /tmp/_circleci_local_build_repo
-                    else echo 'Try to execute using `make circleci...` - see `make help` for examples.'
-                        exit 1
-                    fi
-                  fi
-            - checkout
-      - unless:
-          condition: not << parameters.CLI >>
-          steps:
-            - attach_workspace:
-                at: .
+      - setup-versioning
 
-      - run: |
-          echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+      - docker-login
 
       - run: |
           if [[ $(command -v heroku) == "" ]]; then
@@ -154,7 +186,6 @@ workflows:
       - quality
 
       - build:
-          CLI: ${CLI}
           requires:
             - quality
           filters:
