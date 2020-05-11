@@ -1,10 +1,12 @@
 <div class="container">
 
-  <button *ngFor="let dragon of Dragons.list"
-    [routerLink]="['/dragon', dragon.id]"
-    [class]="'button round dragon-face '.concat(dragon.selected ? 'selected' : '')">
-    <img src="{{ dragon.avatar }}" title="{{ dragon.name }}" alt="{{ dragon.name }}">
-  </button>
+  <div class="scrollable">
+    <button *ngFor="let dragon of Dragons.list"
+      [routerLink]="['/dragon', dragon.id]"
+      [class]="'button round dragon-face '.concat(dragon.selected ? 'selected' : '')">
+      <img src="{{ dragon.avatar }}" title="{{ dragon.name }}" alt="{{ dragon.name }}">
+    </button>
+  </div>
 
   <span class="stretch"></span>
 

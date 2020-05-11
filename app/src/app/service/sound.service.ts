@@ -12,7 +12,7 @@ export class SoundService {
   preLoad(callback: any = false, Pizzicato: any = false) {
     if (!this.engine) {
       this.engine = Pizzicato || window['Pizzicato'] || false;
-      return setTimeout(() => this.preLoad(callback), 1000);
+      return setTimeout(() => this.preLoad(callback), 3000);
     }
 
     this.background = new this.engine.Sound({
