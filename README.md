@@ -53,21 +53,15 @@ O author também é RPGista, guitarrista, artista marcial e atirador. Carrega a 
 [ico-linkedin ]: https://img.shields.io/badge/linkedin-php--developer-1488C6?style=flat-square&logo=linkedin&logoColor=fff
 [ico-github   ]: https://img.shields.io/badge/github-jmurowaniecki-0366d6?style=flat-square&logo=github&logoColor=fff
 
-# Agradecimentos
+## Hic svnt dracones
+###### Agradecimentos
 
 Este exemplo utiliza as bibliotecas [pizzicato de alemangui](https://github.com/alemangui/pizzicato) para as músicas de fundo e demais efeitos sonoros. Músicas e efeitos sonoros obtidos através de [FreeSound.org](https://freesound.org/) licenciados em sua maioria como Creative Commons ou uso particular.
 
 As imagens foram extraídas de [PNG find](https://www.pngfind.com/) em sua maioria como licença Creative Commons ou uso particular, e foram em parte reconstituídas e modificadas artisticamente para se adequar ao design preservando a arte original.
 
+Inspiração no trabalho artístico de Diablo - UI e OST -, Rhapsody of Fire e **D&D / d⚂20**.
 
-
-
- (https://freesound.org/people/digifishmusic/sounds/65231/, https://freesound.org/people/ldezem/sounds/386216/, https://freesound.org/people/Juane170058/sounds/407543/, https://freesound.org/people/jorickhoofd/sounds/160045/, https://freesound.org/people/InspectorJ/sounds/411576/, https://freesound.org/people/Jeffreys2/sounds/333469/, https://freesound.org/people/ScarHand4200/sounds/443738/, https://freesound.org/people/Mega-X-stream/sounds/427414/, https://freesound.org/people/Mega-X-stream/sounds/427414/, https://freesound.org/people/cylon8472/sounds/249686/, https://freesound.org/people/NicknameLarry/sounds/489901/, https://freesound.org/people/ecfike/sounds/132866/, https://freesound.org/people/quadraslayer/sounds/398908/, https://freesound.org/people/juanlopz08/sounds/389498/, https://freesound.org/people/johnnypanic/sounds/34567/, https://freesound.org/people/lonemonk/sounds/352380/)
-
-Fire https://freesound.org/people/dobroide/sounds/65748/, https://freesound.org/people/tc630/sounds/47835/
-
-Panico https://freesound.org/people/belthazarus/sounds/435716/ https://freesound.org/people/ienba/sounds/491405/ https://freesound.org/people/JohnsonBrandEditing/sounds/173945/ https://freesound.org/people/belthazarus/sounds/435716/
-
-Ambiente https://freesound.org/people/bolkmar/sounds/424789/, https://freesound.org/people/User391915396/sounds/399034/ https://freesound.org/people/zagi2/sounds/219167/ https://freesound.org/people/Kyster/sounds/197113/
+Nenhum plugin foi utilizado para os efeitos de paralax nos dragões - _nenhum dragão foi ferido fora dos tabuleiros_.
 
 _**Labor improbus omnia vincit** - Publius Vergilius Maro._

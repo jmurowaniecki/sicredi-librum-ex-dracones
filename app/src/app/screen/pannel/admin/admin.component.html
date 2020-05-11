@@ -2,7 +2,7 @@
   <form class="form" autocomplete="off">
     <div class="dragon-eye"></div>
 
-    <h1>Seus dragões, khaleesi</h1>
+    <h1>Seus dragões, {{user}}</h1>
 
     <span class="scrollable">
       <button *ngFor="let dragon of Dragons.list" [routerLink]="['/dragon/edit', dragon.id]"

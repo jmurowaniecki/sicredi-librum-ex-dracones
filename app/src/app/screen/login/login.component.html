@@ -2,13 +2,10 @@
   <form class="form" autocomplete="off">
     <div class="dragon-eye"></div>
 
-    <h1>Para acessar o sistema é necessário realizar login na plataforma.</h1>
+    <h1>Qual seu nome, ó nobre mestre?</h1>
 
     <label for="username">
-      <input class="input" type="text" name="username" placeholder="Usuário" autocomplete="off">
-    </label>
-    <label for="password">
-      <input class="input" type="password" name="password" placeholder="Senha" autocomplete="off">
+      <input class="input" type="text" name="username" placeholder="Usuário" autocomplete="off" #username (blur)="Login(username.value)">
     </label>
 
     <button class="button" routerLink="/dragons">Acessar</button>
