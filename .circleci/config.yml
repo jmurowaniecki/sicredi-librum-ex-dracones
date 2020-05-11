@@ -1,0 +1,159 @@
+version: 2.1
+
+executors:
+  buildpack:
+    docker:
+      - image: circleci/buildpack-deps:stretch
+
+  node-angular:
+    docker:
+      - image: lambdadeveloper/compilouit:angular
+
+  unstable:
+    docker:
+      - image: lambdadeveloper/sicredi:bloated
+
+
+
+jobs:
+
+  update:
+    machine: true
+    parameters:
+      CLI:
+        type: string
+        default: ""
+    steps:
+      - when:
+          condition: << parameters.CLI >>
+          steps:
+            - run:
+                name: Local build handling.
+                command: |
+                  if [[ ${CIRCLE_SHELL_ENV} =~ "localbuild" ]]
+                  then if [ -d /workdir ]
+                    then ln -s /workdir /tmp/_circleci_local_build_repo
+                    else echo 'Try to execute using `make circleci...` - see `make help` for examples.'
+                        exit 1
+                    fi
+                  fi
+            - checkout
+      - unless:
+          condition: not << parameters.CLI >>
+          steps:
+            - attach_workspace:
+                at: .
+
+      - run:
+          name: Dockerhub authentication.
+          command: echo -n "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+
+      - run:
+          name: Building container for APP.
+          command: docker build -t ${DOCKER_USERNAME}/${APP}:bloated . -f ./app/Dockerfile
+      - run:
+          name: Push APP to Dockerhub
+          command: docker push     ${DOCKER_USERNAME}/${APP}:bloated
+      - run:
+          name: Push dated container to Dockerhub
+          command: |
+            DOCKER_LAST=${DOCKER_USERNAME}/${APP}:$(date +'%Y%m%d%H%I%S')
+            docker tag  ${DOCKER_USERNAME}/${APP}:bloated ${DOCKER_LAST}
+            docker push ${DOCKER_LAST}
+
+
+
+  quality:
+    executor: unstable
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: app-modules-{{ checksum "app/package.json" }}
+
+      - run:
+          name: Perform instalations - ensure latest modules.
+          command: cd app && yarn install
+
+
+      - save_cache:
+          key: app-modules-{{ checksum "app/package.json" }}
+          paths:
+            - ~/app/node_modules
+
+      - run:
+          name: Perform Lint
+          command: cd app && yarn run lint
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  build:
+    machine: true
+    environment:
+      APP: sicredi
+    steps:
+      - checkout
+      - run: echo "$DOCKERHUB_PASSWORD" | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
+      - run: docker build -t lambdadeveloper/${APP}:latest ./app -f ./app/BUILD.Dockerfile
+      - run: docker push     lambdadeveloper/${APP}:latest
+      - run: docker push     lambdadeveloper/${APP}:latest
+
+
+  deploy:
+    machine: true
+    environment:
+      HEROKU_APP: sicredi
+    steps:
+      - checkout
+
+      - run: |
+          echo "$DOCKERHUB_PASSWORD" | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
+          make install
+
+      - run: |
+          if [[ $(command -v heroku) == "" ]]; then
+            curl https://cli-assets.heroku.com/install.sh | sh
+          else
+            echo "Heroku is already installed. No operation was performed."
+          fi
+
+      - run: bash .circleci/setup-heroku.sh
+      - run: |
+          echo "${HEROKU_API_KEY}" | docker login registry.heroku.com --username "_" --password-stdin
+          heroku config:set HEROKU_APP_NAME=${HEROKU_APP}    -a ${HEROKU_APP}
+          heroku config:set HEROKU_API_KEY=${HEROKU_API_KEY} -a ${HEROKU_APP}
+          export            HEROKU_API_KEY=${HEROKU_API_KEY}
+
+      - run: |
+          docker build --rm=false -t registry.heroku.com/${HEROKU_APP}/web . -f ./app/DEPLOY.Dockerfile
+          docker push                registry.heroku.com/${HEROKU_APP}/web:latest
+
+
+
+workflows:
+
+  version: 2.1
+
+  all:
+
+    jobs:
+
+      - update:
+          CLI: ${CLI}
+
+      - quality:
+          requires:
+            - update
+
+      - build:
+        parameters:
+          filters:
+            branches:
+              only: master
+
+      - deploy:
+          requires:
+            - build

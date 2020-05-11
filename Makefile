@@ -11,9 +11,11 @@ _HOSTSFILE_  = /etc/hosts
 _DOCKERFILE_ = .../placeholder/Dockerfile
 
 CIRCLECI_DIR = ./.circleci
-CIRCLECI_RUN = circleci build -v "$$(pwd):/workdir" --env CLI=true
-CIRCLECI_CFG = circleci config process
 CIRCLECI_PRE = $(CIRCLECI_DIR)/pre-processed.yml
+CIRCLECI_MNT = --volume "/var/run/docker.sock:/var/run/docker.sock" --volume "$(shell pwd):/workdir"
+CIRCLECI_CFG = circleci config process
+CIRCLECI_RUN = circleci local execute $(CIRCLECI_MNT) $(CIRCLECI_ENV)
+CIRCLECI_ENV = $(shell cat .circleci/.env 2> /dev/null | awk '/.+/ { print("--env " $$0); }')
 PROJECT_ADDR = $(shell [ -e .env ] && ( \
 	cat .env | grep APP_URL | awk -F'=' \
 		'{ print($$2); }'   | sed -E    \
@@ -112,6 +114,10 @@ circleci: circleci-pre-process # Runs CircleCI workflow locally.
 
 circleci-qa: circleci-pre-process #- Runs CircleCI quality workflow locally.
 	@$(CIRCLECI_RUN) -c $(CIRCLECI_PRE) --job quality
+
+circleci-update: circleci-pre-process
+	@$(CIRCLECI_RUN) -c $(CIRCLECI_PRE) --job update
+
 
 
 

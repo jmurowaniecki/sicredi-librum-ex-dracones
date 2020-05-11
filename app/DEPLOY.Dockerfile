@@ -1,11 +1,13 @@
-FROM lambdadeveloper/compilouit:angular
+FROM lambdadeveloper/sicredi:bloated
 
 LABEL maintainer="John Murowaniecki <john@compilou.com.br>"
 LABEL codeAuthor="John Murowaniecki <john@compilou.com.br>"
 
 WORKDIR /application
-COPY ./ /application
 
-RUN yarn install
+RUN yarn build
 
-CMD ["yarn", "start"]
+FROM scratch AS deploy
+
+WORKDIR /
+COPY --from=0 /application/app/dist /
