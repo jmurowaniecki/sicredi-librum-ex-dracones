@@ -64,7 +64,7 @@ jobs:
 
 
   quality:
-    executor: unstable
+    executor: node-angular
     steps:
       - checkout
 
@@ -90,6 +90,8 @@ jobs:
           paths:
             - .
 
+
+
   build:
     machine: true
     environment:
@@ -100,6 +102,7 @@ jobs:
       - run: docker build -t lambdadeveloper/${APP}:latest ./app -f ./app/BUILD.Dockerfile
       - run: docker push     lambdadeveloper/${APP}:latest
       - run: docker push     lambdadeveloper/${APP}:latest
+
 
 
   deploy:
