@@ -1,9 +1,11 @@
-FROM lambdadeveloper/compilouit:angular
+FROM lambdadeveloper/sicredi:bloated
 
 LABEL maintainer="John Murowaniecki <john@compilou.com.br>"
 LABEL codeAuthor="John Murowaniecki <john@compilou.com.br>"
 
 WORKDIR /application/app
+
+RUN yarn install
 
 RUN yarn run build
 
