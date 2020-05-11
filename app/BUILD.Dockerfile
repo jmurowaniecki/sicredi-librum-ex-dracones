@@ -9,11 +9,6 @@ RUN yarn install
 
 RUN yarn run build
 
-FROM scratch AS latest
+FROM nginx:alpine AS latest
 
-WORKDIR /
-COPY --from=0 /application/app/dist/site /
-
-RUN cp index.html index.php
-
-CMD [ "sh" ]
+COPY --from=0 /application/app/dist/site /usr/share/nginx/html
