@@ -6,12 +6,12 @@ import { Injectable } from '@angular/core';
 export class SoundService {
 
   public background: any = false;
-  public loaded: boolean = false;
+  public loaded: any = false;
   public engine: any = false;
 
   preLoad(callback: any = false, Pizzicato: any = false) {
     if (!this.engine) {
-      this.engine = Pizzicato || window['Pizzicato'] || false;
+      this.engine = Pizzicato || window.Pizzicato || false;
       return setTimeout(() => this.preLoad(callback), 3000);
     }
 
@@ -22,8 +22,9 @@ export class SoundService {
       console.log('sound file loaded!');
       this.loaded = true;
       this.background.volume = 0.05;
-      callback &&
-      callback();
+      if (callback) {
+        callback();
+      }
     });
   }
 
@@ -31,9 +32,9 @@ export class SoundService {
     if (!this.background) {
       return this.preLoad();
     }
-    this.loaded &&
-    this.background &&
-    this.background.play(); //0.5);
-    this.background.loop = 1;
+    if (this.loaded) {
+      this.background.play();
+      this.background.loop = 1;
+    }
   }
 }
