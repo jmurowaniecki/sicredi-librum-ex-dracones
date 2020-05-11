@@ -57,7 +57,7 @@ jobs:
       - run:
           name: Push dated container to Dockerhub
           command: |
-            DOCKER_LAST=${DOCKER_USERNAME}/${APP}:$(date +'%Y%m%d%H%I%S')
+            DOCKER_LAST=${DOCKER_USERNAME}/${APP}:tmp-$(date +'%Y%m%d%H%I%S')
             docker tag  ${DOCKER_USERNAME}/${APP}:bloated ${DOCKER_LAST}
             docker push ${DOCKER_LAST}
 
