@@ -65,6 +65,7 @@ jobs:
 
   quality:
     executor: unstable
+    working_directory: /application
     steps:
 
       - restore_cache:
