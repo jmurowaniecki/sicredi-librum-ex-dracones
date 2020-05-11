@@ -79,7 +79,7 @@ jobs:
       - save_cache:
           key: app-modules-{{ checksum "app/package.json" }}
           paths:
-            - ~/app/node_modules
+            - app/node_modules
 
       - run:
           name: Perform Lint
@@ -98,10 +98,10 @@ jobs:
       APP: sicredi
     steps:
       - checkout
-      - run: echo "$DOCKERHUB_PASSWORD" | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
-      - run: docker build -t lambdadeveloper/${APP}:latest ./app -f ./app/BUILD.Dockerfile
-      - run: docker push     lambdadeveloper/${APP}:latest
-      - run: docker push     lambdadeveloper/${APP}:latest
+      - run: echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+      - run: docker build -t ${DOCKER_USERNAME}/${APP}:latest ./app -f ./app/BUILD.Dockerfile
+      - run: docker push     ${DOCKER_USERNAME}/${APP}:latest
+      - run: docker push     ${DOCKER_USERNAME}/${APP}:latest
 
 
 
@@ -113,7 +113,7 @@ jobs:
       - checkout
 
       - run: |
-          echo "$DOCKERHUB_PASSWORD" | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
+          echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
           make install
 
       - run: |

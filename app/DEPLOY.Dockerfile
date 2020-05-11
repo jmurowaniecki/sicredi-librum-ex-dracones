@@ -10,4 +10,5 @@ RUN yarn build
 FROM scratch AS deploy
 
 WORKDIR /
-COPY --from=0 /application/app/dist /
+COPY --from=0 /application/app/dist/site /
+RUN cp index.html index.php
