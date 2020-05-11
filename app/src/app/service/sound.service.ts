@@ -17,9 +17,8 @@ export class SoundService {
 
     this.background = new this.engine.Sound({
       source: 'file',
-      options: { path: '/assets/sound/background/0.wav' }
+      options: { path: '/assets/sound/background/0.mp3' }
     }, () => {
-      console.log('sound file loaded!');
       this.loaded = true;
       this.background.volume = 0.05;
       if (callback) {
