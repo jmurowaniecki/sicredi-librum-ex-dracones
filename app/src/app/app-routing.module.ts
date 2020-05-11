@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './screen/login/login.component';
 import { PannelComponent } from './screen/pannel/pannel.component';
 import { DragonComponent } from './screen/pannel/dragon/dragon.component';
+import { AdminComponent } from './screen/pannel/admin/admin.component';
+import { AdminFormComponent } from './screen/pannel/admin/adminform.component';
 
 
 const routes: Routes = [
@@ -20,6 +22,14 @@ const routes: Routes = [
         path: '',
         redirectTo: '/dragon/1',
         pathMatch: 'full'
+      },
+      {
+        path: 'new',
+        component: AdminFormComponent
+      },
+      {
+        path: 'admin',
+        component: AdminComponent
       }
     ]
   },

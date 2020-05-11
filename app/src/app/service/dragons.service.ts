@@ -14,7 +14,7 @@ export class DragonsService {
       name: 'Jôrthungd`Al',
       description: 'Quem com fogo fere, como churrasco será servido.',
       type: 'Dragão de Fogo',
-      period: '2780 a.J. - 128 d.J.',
+      period: {from: 2780, to: 128},
       image: './assets/image/dragon/dragon0.png',
       avatar: './assets/image/dragon/dragon0-face.png',
       landscape: './assets/image/dragon/landscape0.jpg'
@@ -24,7 +24,7 @@ export class DragonsService {
       name: 'Draconísius',
       description: 'Eu prefiro a comida suada e cansada.. É tipo um tempero natural.',
       type: 'Dragão de Pedra',
-      period: '1721 a.J. - 345 d.J.',
+      period: {from: 1721, to: 345},
       image: './assets/image/dragon/dragon1.png',
       avatar: './assets/image/dragon/dragon1-face.png',
       landscape: './assets/image/dragon/landscape1.jpg'
@@ -34,7 +34,7 @@ export class DragonsService {
       name: 'Phaul`argh',
       description: 'Eu amo meus inimigos. Pena que já comi todos.',
       type: 'Dragão Elétrico',
-      period: '792 a.J. - 932 d.J.',
+      period: {from: 792, to: 932},
       image: './assets/image/dragon/dragon2.png',
       avatar: './assets/image/dragon/dragon2-face.png',
       landscape: './assets/image/dragon/landscape3.jpg'
@@ -44,7 +44,7 @@ export class DragonsService {
       name: 'Mahr`Yan',
       description: 'Adoro visitas.. Principalmente na hora da janta.',
       type: 'Dragão de Sangue',
-      period: '82 a.J. - 987 d.J.',
+      period: {from: 82, to: 987},
       image: './assets/image/dragon/dragon3.png',
       avatar: './assets/image/dragon/dragon3-face.png',
       landscape: './assets/image/dragon/landscape5.png'
@@ -54,7 +54,7 @@ export class DragonsService {
       name: 'Soulstcy`Anh',
       description: 'Não se incomode, pode continuar vestido. Minha saliva derrete tudo.',
       type: 'Dragão de Ácido',
-      period: '2780 a.J. - 128 d.J.',
+      period: {from: 2780, to: 128},
       image: './assets/image/dragon/dragon4.png',
       avatar: './assets/image/dragon/dragon4-face.png',
       landscape: './assets/image/dragon/landscape2.jpg'

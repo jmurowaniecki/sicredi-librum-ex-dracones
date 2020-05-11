@@ -28,23 +28,24 @@
         -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1))
         filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1))
         background-position: calc(100% - var(--mouseX) * 0.1%) top
-        // background-size: calc(80% - var(--mouseY) * 0.1%)
+        background-size: 80%
+        background-size: calc(80% - var(--mouseY) * 0.1%)
 
     .scroll
         position: fixed
-        top: -200px
+        top: -213px
         right: 10%
-        background: url(/assets/image/scroll.png) 0 -10px no-repeat
+        background: url(/assets/image/scroll.png) 0 0px no-repeat
         width: 193px
         height: 300px
-        padding: 15px 20px
+        padding: 5px 20px
         overflow: hidden
         text-align: center
         transition: top .8s
         -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1))
         filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1))
         color: rgba(255, 255, 255, 1)
-        font-size: 25px
+        font-size: 20px
         line-height: 15px
 
 
@@ -52,20 +53,44 @@
             top: 0
 
         & p
-            font-size: 25px
+            font-size: 20px
             text-align: center
 
         & i
             font-size: 20px
 
         & span
-            font-size: 30px
+            font-size: 25px
             line-height: 30px
             height: 130px
             display: block
+            // border: 1px solid gold // DEBUG
+            &:first-child
+                &::before, &::after
+                    font-size: 42px
+                    position: relative
+                &::before
+                    content: '“'
+                    top: -5px
+                &::after
+                    content: '”'
+                    top: 20px
+
+
+        & span:nth-child(2), & span:nth-child(3)
+            font-size: 25px
+            line-height: 20px
+            height: 20px
+            display: block
+            text-align: right
+
+        & span:nth-child(4)
+            margin-top: 9px
+            font-size: 25px
 
         & span:last-of-type
-            height: 60px !important
+            height: 42px !important
 
         .name
             font-size: 33px
+            font-family: 'Bilbo Swash' !important

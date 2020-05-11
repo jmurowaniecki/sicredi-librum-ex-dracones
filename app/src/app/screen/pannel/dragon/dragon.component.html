@@ -4,7 +4,8 @@
 
   <a class="scroll" href="#" routerLink="dragonDetail">
     <span>{{ Dragon.description }}</span>
-    <i>{{ Dragon.period }}</i>
+    <span>⭑ {{ Dragon.period.from }} a.D.</span>
+    <span>† {{ Dragon.period.to }} d.D.</span>
     <span>{{ Dragon.type }}</span>
     <p class="name">{{ Dragon.name }}</p>
   </a>

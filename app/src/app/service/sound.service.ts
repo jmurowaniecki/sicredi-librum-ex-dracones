@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-// import { Pizzicato  } from 'pizzicato';
 
 @Injectable({
   providedIn: 'root'
@@ -8,24 +7,21 @@ export class SoundService {
 
   public background: any = false;
   public loaded: boolean = false;
+  public engine: any = false;
 
-  constructor() {}
-
-  preLoad(callback: any = false) {
-
-    console.log(Pizzicato);
-
-    if (!Pizzicato) {
-      return setTimeout(this.preLoad, 3000);
+  preLoad(callback: any = false, Pizzicato: any = false) {
+    if (!this.engine) {
+      this.engine = Pizzicato || window['Pizzicato'] || false;
+      return setTimeout(() => this.preLoad(callback), 1000);
     }
 
-    this.background = new Pizzicato.Sound({
+    this.background = new this.engine.Sound({
       source: 'file',
-      options: { path: '/assets/sound/background-0.wav' }
+      options: { path: '/assets/sound/background/0.wav' }
     }, () => {
       console.log('sound file loaded!');
       this.loaded = true;
-      this.background.volume = 0.3;
+      this.background.volume = 0.05;
       callback &&
       callback();
     });

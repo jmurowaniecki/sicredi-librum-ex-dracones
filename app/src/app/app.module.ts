@@ -12,6 +12,8 @@ import { SidebarComponent } from './screen/pannel/sidebar/sidebar.component';
 import { StageComponent } from './screen/pannel/stage/stage.component';
 import { DragonComponent } from './screen/pannel/dragon/dragon.component';
 import { SoundService } from './service/sound.service';
+import { AdminComponent } from './screen/pannel/admin/admin.component';
+import { AdminFormComponent } from './screen/pannel/admin/adminform.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { SoundService } from './service/sound.service';
     PannelComponent,
     SidebarComponent,
     StageComponent,
-    DragonComponent
+    DragonComponent,
+    AdminFormComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
