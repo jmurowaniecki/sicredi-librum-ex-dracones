@@ -9,9 +9,9 @@ export class SoundService {
   public loaded: any = false;
   public engine: any = false;
 
-  preLoad(callback: any = false, Pizzicato: any = false) {
+  preLoad(callback: any = false, Pizzicato: any = 'Pizzicato') {
+    this.engine = Pizzicato in window ? window[Pizzicato] : false;
     if (!this.engine) {
-      this.engine = Pizzicato || window.Pizzicato || false;
       return setTimeout(() => this.preLoad(callback), 3000);
     }
 
