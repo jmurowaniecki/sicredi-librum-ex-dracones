@@ -86,40 +86,23 @@ commands:
         type: string
       target:
         type: string
+      origin:
+        type: string
+        default: ${DOCKER_USERNAME}/${APP}
+      namespace:
+        type: string
+        default: ${DOCKER_USERNAME}/${APP}
     steps:
       - run:
           name: << parameters.description >>
           command: |
-            docker tag  ${DOCKER_USERNAME}/${APP}:<< parameters.source >> ${DOCKER_USERNAME}/${APP}:<< parameters.target >>
-            docker push ${DOCKER_USERNAME}/${APP}:<< parameters.target >>
+            docker tag  << parameters.origin    >>:<< parameters.source >> \
+                        << parameters.namespace >>:<< parameters.target >>
+            docker push << parameters.namespace >>:<< parameters.target >>
 
 
 
 jobs:
-
-  build:
-    machine: true
-    steps:
-      - setup-versioning
-
-      - docker-login
-
-      - docker-build:
-          description: Build and push work in progress for APP.
-          file: ./app/Dockerfile
-          tag: bloated
-
-      - docker-clone:
-          description: Push dated container to Dockerhub.
-          source: bloated
-          target: tmp-$(date +'%Y%m%d%H%I%S')
-
-      - docker-build:
-          description: Build and push latest TAG for APP.
-          file: ./app/BUILD.Dockerfile
-          tag: latest
-
-
 
   quality:
     executor: unstable
@@ -149,6 +132,31 @@ jobs:
             - .
 
 
+
+  build:
+    machine: true
+    steps:
+      - setup-versioning
+
+      - docker-login
+
+      - docker-build:
+          description: Build and push work in progress for APP.
+          file: ./app/Dockerfile
+          tag: bloated
+
+      - docker-clone:
+          description: Push dated container to Dockerhub.
+          source: bloated
+          target: tmp-$(date +'%Y%m%d%H%I%S')
+
+      - docker-build:
+          description: Build and push latest TAG for APP.
+          file: ./app/BUILD.Dockerfile
+          tag: latest
+
+
+
   deploy:
     machine: true
     steps:
@@ -170,9 +178,11 @@ jobs:
           heroku config:set HEROKU_API_KEY=${HEROKU_API_KEY} -a ${HEROKU_APP}
           export            HEROKU_API_KEY=${HEROKU_API_KEY}
 
-      - run: |
-          docker build --rm=false -t registry.heroku.com/${HEROKU_APP}/web . -f ./app/DEPLOY.Dockerfile
-          docker push                registry.heroku.com/${HEROKU_APP}/web:latest
+      - docker-clone:
+          description: Clone container to Heroku namespace.
+          source: latest
+          namespace: registry.heroku.com/${HEROKU_APP}/web
+          target: latest
 
 
 
