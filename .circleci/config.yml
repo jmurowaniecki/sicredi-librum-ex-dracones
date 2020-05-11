@@ -64,9 +64,8 @@ jobs:
 
 
   quality:
-    executor: node-angular
+    executor: unstable
     steps:
-      - checkout
 
       - restore_cache:
           key: app-modules-{{ checksum "app/package.json" }}
