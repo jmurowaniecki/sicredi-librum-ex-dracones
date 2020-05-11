@@ -37,7 +37,7 @@ API_URL=http://api.localhost
 [![DockerHub][ico-dockerhub]][url-dockerhub]
 [![CircleCI][ico-circleci]][url-circleci]
 
-Os containers são atualizados sempre que houver alteração nos ramos principais do repositório e estarão disponíveis publicamente no [Docker Hub][url-dockerhub] através do [CircleCI][url-circleci].
+Os containers são atualizados sempre que houver alteração nos ramos principais do repositório e estarão disponíveis publicamente no [Docker Hub][url-dockerhub] de forma automatizada via [CircleCI][url-circleci].
 
 
 ## Sobre
@@ -63,7 +63,7 @@ O author também é RPGista, guitarrista, artista marcial e atirador. Carrega a 
 [ico-linkedin ]: https://img.shields.io/badge/linkedin-php--developer-1488C6?style=flat-square&logo=linkedin&logoColor=fff
 [ico-github   ]: https://img.shields.io/badge/github-jmurowaniecki-0366d6?style=flat-square&logo=github&logoColor=fff
 [ico-dockerhub]: https://img.shields.io/badge/λ::dev-sicredi-099cec?style=flat-square&logo=docker&logoColor=fff
-[ico-circleci]: https://img.shields.io/badge/CircleCI-configuring..-199aFc?style=flat-square&logo=circleci&logoColor=fff
+[ico-circleci]: https://img.shields.io/circleci/build/github/jmurowaniecki/sicredi-librum-ex-dracones?label=CircleCI&logo=circleci&style=flat-square&token=b9fd25eb908755fd60791b8b3bee30e4641ac9e7
 
 ## Hic svnt dracones
 ###### Agradecimentos
