@@ -152,20 +152,21 @@ jobs:
             - run: |
                   bash .circleci/setup-heroku.sh
 
-      - run: |
-            echo "${HEROKU_API_KEY}" | docker login registry.heroku.com --username "_" --password-stdin
-
       - run:
           name: Configure Heroku environment and release the deployed container.
           command: |
-            heroku config:set HEROKU_APP_NAME=${HEROKU_APP}    -a ${HEROKU_APP}
-            heroku config:set HEROKU_API_KEY=${HEROKU_API_KEY} -a ${HEROKU_APP}
-            heroku container:login
-            heroku container:push         --app ${HEROKU_APP} --recursive
-            heroku container:release web  --app ${HEROKU_APP} || \
-            heroku restart
-
-
+            POOL="registry.heroku.com"
+            LAST="${DOCKER_USERNAME}/${APP}:web"
+            echo "${HEROKU_API_KEY}" | \
+            docker login ${POOL} --username "_" --password-stdin
+            docker tag  "${LAST}" "${POOL}/${HEROKU_APP}/web"
+            docker push "${POOL}/${HEROKU_APP}/web"
+            IMAGE=$(docker inspect "${LAST}" --format={{.Id}})
+            curl --netrc -X PATCH https://api.heroku.com/apps/${HEROKU_APP}/formation \
+              -d '{"updates":[{"type":"web","docker_image":"'${IMAGE}'"}]}' \
+              -H "Content-Type: application/json" \
+              -H "Accept: application/vnd.heroku+json; version=3.docker-releases" \
+              -H "Authorization: Bearer ${HEROKU_API_KEY}"
 
 workflows:
 
