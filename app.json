@@ -1,0 +1,8 @@
+{
+  "name": "sicredi-librum-ex-dracones",
+  "description": "Teste prático SoftDesign / Sicredi",
+  "repository": "https://github.com/jmurowaniecki/sicredi-librum-ex-dracones",
+  "logo": "https://github.com/jmurowaniecki/sicredi-librum-ex-dracones/blob/master/app/src/assets/image/dragoneye.png?raw=true",
+  "keywords": ["angular", "docker", "nginx", "circleci", "angular9", "rpg"],
+  "stack": "container"
+}

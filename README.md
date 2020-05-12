@@ -1,6 +1,12 @@
 # Librum ex Dracones
 
-**Librum ex Dracones** trata-se de um [teste para desenvolvedor Web](https://github.com/WoopSicredi/jobs/issues/6) realizado entre os dias 9 e 10 de maio.
+**Librum ex Dracones** trata-se de um [teste para desenvolvedor Web](https://github.com/WoopSicredi/jobs/issues/6).
+
+## Primeiros passos
+
+Você pode realizar o deploy instantâneo no Heroku utilizando o botão abaixo:
+
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## _Instalação_
 

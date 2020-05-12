@@ -13,9 +13,10 @@ RUN yarn run build
 
 FROM nginx:alpine AS latest
 
-COPY --from=0 /application/app/dist/site /usr/share/nginx/html
+COPY --from=0 /application/app/dist/site             /usr/share/nginx/html
+COPY --from=0 /application/app/.../heroku/nginx.conf /etc/nginx/nginx.conf
 
-EXPOSE 80
+EXPOSE $PORT
 
 STOPSIGNAL SIGTERM
 

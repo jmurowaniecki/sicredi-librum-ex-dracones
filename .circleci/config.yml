@@ -201,9 +201,11 @@ jobs:
 
       - docker-clone:
           description: Clone container to Heroku namespace.
-          source: latest
           namespace: registry.heroku.com/${HEROKU_APP}/web
+          source: latest
           target: latest
+
+      - run: heroku container:release web -a ${HEROKU_APP}
 
 
 
