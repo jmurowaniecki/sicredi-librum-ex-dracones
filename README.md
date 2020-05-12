@@ -4,17 +4,23 @@
 
 **Librum ex Dracones** trata-se de um [teste de conhecimentos](https://github.com/WoopSicredi/jobs/issues/6).
 
+
+
 ## Primeiros passos
 
-Você pode realizar o deploy instantâneo no Heroku utilizando o botão abaixo:
+Você pode realizar o deploy instantâneo no Heroku sem precisar instalar nada no seu ambiente de trabalho bastando utilizar o botão abaixo:
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+
 
 ## _Instalação_
 
 Após clonar o projeto execute o comando `make` no intuito de validar os requisitos do sistema e criar as variáveis de ambiente e, logo a seguir `make install` para montar os containers e `make launch` inicializar a aplicação.
 
 > Obtenha mais informações sobre os comandos disponíveis executando `make help` em seu console.
+
+
 
 ### Configuração do ambiente
 
@@ -38,6 +44,8 @@ API_URL=http://api.localhost
 # Endereços para direcionamento das requisições.
 ```
 
+
+
 ## Docker e Containers
 [url-dockerhub]: https://hub.docker.com/repository/docker/lambdadeveloper/sicredi
 [url-circleci ]: https://app.circleci.com/pipelines/github/jmurowaniecki/sicredi-librum-ex-dracones
@@ -54,15 +62,19 @@ Os containers são atualizados sempre que houver alteração nos ramos principai
 [![linkedin ][ico-linkedin ]](https://www.linkedin.com/in/php-developer)
 [![Twitter  ][ico-twitter  ]](https://twitter.com/0xD3C0D3)
 [![github   ][ico-github   ]](https://github.com/jmurowaniecki)
-[![instagram][ico-instagram]](https://instagram.com/john.bmp)
 <!-- Makefile:/about -->
 
 Desenvolvedor apaixonado, tem fixação por quebra-cabeças e em busca constante de desafios.
 
-Fascinado por astronomia, física quântica, energia (e matéria) escura, inflação e destino entrópico do multiverso, alquimista e claro: coach de biohacking quântico, neuroprogramação, pseudocientista, astrólogo mentor de **η+1** desavisados.
+<details>
+  <summary>Veja mais...</summary>
 
-O author também é RPGista, guitarrista, artista marcial e atirador. Carrega a culpa de quebrar constantemente a 4ª parede com extensos monólogos.
+  Fascinado por astronomia, física quântica, energia (e matéria) escura, inflação e destino entrópico do multiverso, alquimista e claro: coach de biohacking quântico, neuroprogramação, pseudocientista, astrólogo mentor de **η+1** desavisados.
 
+  O author também é RPGista, guitarrista, artista marcial e atirador. Carrega a culpa de quebrar constantemente a 4ª parede com extensos monólogos.
+
+  [![instagram][ico-instagram]](https://instagram.com/john.bmp)
+</details>
 
 
 
