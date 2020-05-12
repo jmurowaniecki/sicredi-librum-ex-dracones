@@ -17,7 +17,8 @@ export class DragonsService {
       period: {from: 2780, to: 128},
       image: './assets/image/dragon/dragon0.png',
       avatar: './assets/image/dragon/dragon0-face.png',
-      landscape: './assets/image/dragon/landscape0.jpg'
+      landscape: './assets/image/dragon/landscape0.jpg',
+      position: 'top center'
     },
     {
       id: 1,
@@ -27,17 +28,19 @@ export class DragonsService {
       period: {from: 1721, to: 345},
       image: './assets/image/dragon/dragon1.png',
       avatar: './assets/image/dragon/dragon1-face.png',
-      landscape: './assets/image/dragon/landscape1.jpg'
+      landscape: './assets/image/dragon/landscape1.jpg',
+      position: 'top right'
     },
     {
       id: 2,
       name: 'Phaul`argh',
       description: 'Eu amo meus inimigos. Pena que já comi todos.',
       type: 'Dragão Elétrico',
-      period: {from: 792, to: 932},
-      image: './assets/image/dragon/dragon2.png',
-      avatar: './assets/image/dragon/dragon2-face.png',
-      landscape: './assets/image/dragon/landscape3.jpg'
+      period: { from: 792, to: 932 },
+      image: './assets/image/dragon/dragon4.png',
+      avatar: './assets/image/dragon/dragon4-face.png',
+      landscape: './assets/image/dragon/landscape2.jpg',
+      position: 'top center'
     },
     {
       id: 3,
@@ -47,18 +50,10 @@ export class DragonsService {
       period: {from: 82, to: 987},
       image: './assets/image/dragon/dragon3.png',
       avatar: './assets/image/dragon/dragon3-face.png',
-      landscape: './assets/image/dragon/landscape5.png'
-    },
-    {
-      id: 4,
-      name: 'Soulstcy`Anh',
-      description: 'Não se incomode, pode continuar vestido. Minha saliva derrete tudo.',
-      type: 'Dragão de Ácido',
-      period: {from: 2780, to: 128},
-      image: './assets/image/dragon/dragon4.png',
-      avatar: './assets/image/dragon/dragon4-face.png',
-      landscape: './assets/image/dragon/landscape2.jpg'
-    }]) {
+      landscape: './assets/image/dragon/landscape5.png',
+      position: 'bottom right'
+    }
+  ]) {
       dragon.selected = dragon.selected || false;
       this.list.push(dragon);
     }

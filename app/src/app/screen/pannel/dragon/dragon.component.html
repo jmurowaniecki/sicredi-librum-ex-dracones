@@ -1,8 +1,8 @@
 <div class="inside-stage" [style]="'background-image: url('.concat(Dragon.landscape, ')')">
 
-  <div class="dragon" [style]="'background-image: url('.concat(Dragon.image, ')')"></div>
+  <div class="dragon" [style]="'background-image: url('.concat(Dragon.image, '); background-position: ', Dragon.position)"></div>
 
-  <a class="scroll" href="#" routerLink="dragonDetail">
+  <a class="scroll" (click)="sounds.preLoaded.action[0].play()">
     <span>{{ Dragon.description }}</span>
     <span>⭑ {{ Dragon.period.from }} a.D.</span>
     <span>† {{ Dragon.period.to }} d.D.</span>

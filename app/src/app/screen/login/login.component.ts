@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void { }
 
   Login(name: string | any) {
+    this.sound.preLoaded.action[1].play();
     this.messages = [];
 
     if (name.length > 0) {
@@ -53,6 +54,7 @@ export class LoginComponent implements OnInit {
       }
       if (!this.messages.length) {
         this.login.user = name;
+        this.sound.preLoaded.action[2].play();
         this.route.navigate(['/dragons']);
       }
     }

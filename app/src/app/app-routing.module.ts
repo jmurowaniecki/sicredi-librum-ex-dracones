@@ -25,11 +25,11 @@ const routes: Routes = [
       },
       {
         path: 'new',
-        component: AdminFormComponent
+        component: AdminFormComponent, canActivate: [AuthGuard]
       },
       {
         path: 'admin',
-        component: AdminComponent
+        component: AdminComponent, canActivate: [AuthGuard]
       }
     ]
   },

@@ -23,13 +23,11 @@
         background-repeat: no-repeat
         background-position: top right
         background-size: contain
-        transform: top scale(.75)
-        size: .2
         -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1))
         filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1))
-        background-position: calc(100% - var(--mouseX) * 0.1%) top
-        background-size: 80%
-        background-size: calc(80% - var(--mouseY) * 0.1%)
+        // background-position: calc(100% - var(--mouseX) * 0.1%) top
+        // background-size: 110%
+        // background-size: calc(110% - var(--mouseY) * 0.1%)
 
     .scroll
         position: fixed
@@ -49,7 +47,7 @@
         line-height: 15px
 
 
-        &:hover, &:focus
+        &:hover, &:focus, .clicked
             top: 0
 
         & p
@@ -94,3 +92,13 @@
         .name
             font-size: 33px
             font-family: 'Bilbo Swash' !important
+
+
+
+@media screen and ( max-width: 800px )
+    .inside-stage
+        .dragon
+            height: 100% !important
+            background-size: calc(210% - var(--mouseY) * 0.1%) !important
+            z-index: 0
+            background-size: cover

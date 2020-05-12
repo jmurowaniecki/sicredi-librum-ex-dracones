@@ -9,6 +9,24 @@ export class SoundService {
   public loaded: any = false;
   public engine: any = false;
 
+  public sounds: any = {
+    action: ['click.mp3', 'move.mp3', 'open.mp3'],
+    background: ['0.mp3', '1.mp3', '2.mp3'],
+    dragon: ['0.mp3', '2.mp3', '3.mp3', '4.mp3', '5.mp3', '6.mp3', '7.mp3'],
+    fire: ['0.mp3', '1.mp3']
+  };
+
+  public preLoaded: any = {
+    action: [],
+    background: [],
+    dragon: [],
+    fire: []
+  };
+
+  public DragonBreath(dragon: any = false) {
+    this.playBackground()
+  }
+
   preLoad(callback: any = false, Pizzicato: any = 'Pizzicato') {
     this.engine = Pizzicato in window ? window[Pizzicato] : false;
     if (!this.engine) {
@@ -17,7 +35,8 @@ export class SoundService {
 
     this.background = new this.engine.Sound({
       source: 'file',
-      options: { path: '/assets/sound/background/0.mp3' }
+      options: { path: '/assets/sound/background/'
+        .concat(this.sounds.background[Math.floor(Math.random() * this.sounds.background.length)]) }
     }, () => {
       this.loaded = true;
       this.background.volume = 0.05;
@@ -25,6 +44,22 @@ export class SoundService {
         callback();
       }
     });
+
+    for (const key in this.sounds) {
+      if (this.sounds.hasOwnProperty(key)) {
+        const elements = this.sounds[key];
+        elements.forEach(element => {
+          this.preLoaded[key].push(new this.engine.Sound({
+            source: 'file',
+            options: {
+              path: `/assets/sound/${key}/`.concat(element)
+            }
+          }, () => {
+            console.log('loaded', key, element);
+          }))
+        });
+      }
+    }
   }
 
   playBackground() {
@@ -32,8 +67,8 @@ export class SoundService {
       return this.preLoad();
     }
     if (this.loaded) {
-      this.background.play();
       this.background.loop = 1;
+      this.background.play();
     }
   }
 }

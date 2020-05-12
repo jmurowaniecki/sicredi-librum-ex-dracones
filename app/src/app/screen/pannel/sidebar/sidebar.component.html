@@ -2,6 +2,7 @@
 
   <div class="scrollable">
     <button *ngFor="let dragon of Dragons.list"
+      (click)="sounds.preLoaded.action[0].play()"
       [routerLink]="['/dragon', dragon.id]"
       [class]="'button round dragon-face '.concat(dragon.selected ? 'selected' : '')">
       <img src="{{ dragon.avatar }}" title="{{ dragon.name }}" alt="{{ dragon.name }}">
@@ -10,11 +11,11 @@
 
   <span class="stretch"></span>
 
-  <button class="button round dragon-face" routerLink="/dragons/admin">
+  <button (click)="sounds.preLoaded.action[1].play()"  class="button round dragon-face" routerLink="/dragons/admin">
     <img src="/assets/image/dragoneye.png" title="More Dragons" alt="Open modal of Dragons!">
   </button>
 
-  <button class="button round dragon-face" routerLink="/logout">
+  <button (click)="sounds.preLoaded.action[2].play()"  class="button round dragon-face" routerLink="/logout">
     Sair
   </button>
 </div>
