@@ -96,7 +96,6 @@ commands:
       - run:
           name: << parameters.description >>
           command: |
-            docker pull << parameters.origin    >>:<< parameters.source >>
             docker tag  << parameters.origin    >>:<< parameters.source >> \
                         << parameters.namespace >>:<< parameters.target >>
             docker push << parameters.namespace >>:<< parameters.target >>
@@ -123,25 +122,25 @@ jobs:
 
   quality:
     executor: unstable
-    working_directory: /application
+    working_directory: /application/app
     steps:
 
       - restore_cache:
-          key: app-modules-{{ checksum "app/package.json" }}
+          key: app-modules-{{ checksum "package.json" }}
 
       - run:
           name: Perform instalations - ensure latest modules.
-          command: cd app && yarn install
+          command: yarn install
 
 
       - save_cache:
-          key: app-modules-{{ checksum "app/package.json" }}
+          key: app-modules-{{ checksum "package.json" }}
           paths:
-            - app/node_modules
+            - node_modules
 
       - run:
           name: Perform Lint
-          command: cd app && yarn run lint
+          command: yarn run lint
 
       - persist_to_workspace:
           root: .
@@ -187,7 +186,9 @@ jobs:
             echo "Heroku is already installed. No operation was performed."
           fi
 
-      - run: bash .circleci/setup-heroku.sh
+      - run: |
+            bash .circleci/setup-heroku.sh
+            echo "${HEROKU_API_KEY}" | docker login registry.heroku.com --username "_" --password-stdin
 
       - docker-clone:
           description: Clone container to Heroku namespace.
@@ -198,9 +199,9 @@ jobs:
       - run:
           name: Configure Heroku environment and release the deployed container.
           command: |
-            echo "${HEROKU_API_KEY}" | docker login registry.heroku.com --username "_" --password-stdin
             heroku config:set HEROKU_APP_NAME=${HEROKU_APP}    -a ${HEROKU_APP}
             heroku config:set HEROKU_API_KEY=${HEROKU_API_KEY} -a ${HEROKU_APP}
+            heroku container:login
             heroku container:release web  -a ${HEROKU_APP}
 
 
