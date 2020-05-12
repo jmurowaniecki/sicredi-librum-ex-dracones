@@ -2,6 +2,19 @@
 
 
 
+[url-dockerhub]: https://hub.docker.com/repository/docker/lambdadeveloper/sicredi
+[url-circleci ]: https://app.circleci.com/pipelines/github/jmurowaniecki/sicredi-librum-ex-dracones
+[url-climate  ]: https://codeclimate.com/github/jmurowaniecki/sicredi-librum-ex-dracones/maintainability
+
+
+
+[](BADGES)
+[![DockerHub][ico-dockerhub]][url-dockerhub]
+[![CircleCI][ico-circleci]][url-circleci]
+[![Maintainability][ico-climate]][url-climate]
+
+
+
 ## Primeiros passos
 
 Você pode realizar o deploy instantâneo no Heroku sem precisar instalar nada no seu ambiente de trabalho bastando utilizar o botão abaixo:
@@ -42,12 +55,7 @@ API_URL=http://api.localhost
 
 
 
-## Docker e Containers
-[url-dockerhub]: https://hub.docker.com/repository/docker/lambdadeveloper/sicredi
-[url-circleci ]: https://app.circleci.com/pipelines/github/jmurowaniecki/sicredi-librum-ex-dracones
-
-[![DockerHub][ico-dockerhub]][url-dockerhub]
-[![CircleCI][ico-circleci]][url-circleci]
+## Docker // CI/CD // QA
 
 Os containers são atualizados sempre que houver alteração nos ramos principais do repositório e estarão disponíveis publicamente no [Docker Hub][url-dockerhub] de forma automatizada via [CircleCI][url-circleci].
 
@@ -134,3 +142,4 @@ _**Labor improbus omnia vincit** - Publius Vergilius Maro._
 [ico-github   ]: https://img.shields.io/badge/github-jmurowaniecki-0366d6?style=flat-square&logo=github&logoColor=fff
 [ico-dockerhub]: https://img.shields.io/badge/λ::dev-sicredi-099cec?style=flat-square&logo=docker&logoColor=fff
 [ico-circleci ]: https://img.shields.io/circleci/build/github/jmurowaniecki/sicredi-librum-ex-dracones?label=CircleCI&logo=circleci&style=flat-square&token=b9fd25eb908755fd60791b8b3bee30e4641ac9e7
+[ico-climate  ]: https://api.codeclimate.com/v1/badges/f1c59a28eaeacc36c2b1/maintainability

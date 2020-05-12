@@ -17,25 +17,24 @@ services:
     ports:
       - 80:80
     links:
-      - api
-      - app
+      - worker
+      - web
     networks:
       - local
 
-  app:
-    build: ./app
+  web:
+    build: ./web
     environment:
       APP_NAME: "${PROJECT_NAME}"
       APP_URL : ${APP_URL}
       ENVIRONMENT: ${ENVIRONMENT}
     volumes:
-      - ./app:/app
-      - /app/node_modules
+      - ./web:/web
     networks:
       - local
 
-  api:
-    build: ./api
+  worker:
+    build: ./worker
     environment:
       APP_NAME   : "${PROJECT_NAME}"
       APP_URL    : ${APP_URL}
@@ -46,8 +45,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_USERNAME: ${DB_USERNAME}
     volumes:
-      - ./api:/api
-      - /api/node_modules
+      - ./worker:/worker
     networks:
       - local
     links:

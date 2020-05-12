@@ -69,8 +69,8 @@ check-host:
 
 check: # Verify if `docker-compose.yaml` is correct.
 	@D=Dockerfile; \
-	for each in api app; \
-	do (TARGET=./$$each; \
+	for each in web worker  ; \
+	do (TARGET=./"$${each}" ; \
 		SOURCE=./placeholder; \
 		([ ! -d $$TARGET     ] && cp -Rf $$(pwd)/.../$$SOURCE     $$TARGET); \
 		([ ! -e $$TARGET/$$D ] && cp     $$(pwd)/.../$$SOURCE/$$D $$TARGET/$$D); \

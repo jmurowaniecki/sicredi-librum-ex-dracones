@@ -1,0 +1,15 @@
+FROM lambdadeveloper/sicredi:api AS api
+
+FROM lambdadeveloper/sicredi:app AS app
+
+FROM lambdadeveloper/compilouit:node AS web
+
+WORKDIR /application
+
+COPY --from=0 /worker        /application
+COPY --from=1 /web/dist/site /application/public
+
+RUN yarn install
+RUN yarn cache clean
+
+CMD [ "yarn", "start" ]

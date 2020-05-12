@@ -117,7 +117,13 @@ jobs:
 
       - docker-build:
           description: Build and push latest TAG for APP.
-          file: ./app/Dockerfile
+          file: .circleci/build/web.Dockerfile
+          tag: app
+
+      - docker-build:
+          description: Build and push latest TAG for API.
+          file: .circleci/build/worker.Dockerfile
+          tag: api
 
 
 
@@ -130,7 +136,7 @@ jobs:
 
       - docker-build:
           description: Build and push latest TAG for APP.
-          file: ./app/Dockerfile
+          file: .circleci/build/Dockerfile.web
           tag: web
 
       - unless:
@@ -152,12 +158,11 @@ jobs:
       - run:
           name: Configure Heroku environment and release the deployed container.
           command: |
-            cd app
             heroku config:set HEROKU_APP_NAME=${HEROKU_APP}    -a ${HEROKU_APP}
             heroku config:set HEROKU_API_KEY=${HEROKU_API_KEY} -a ${HEROKU_APP}
             heroku container:login
-            heroku container:push         -app ${HEROKU_APP}
-            heroku container:release web  -app ${HEROKU_APP} || \
+            heroku container:push         --app ${HEROKU_APP} --recursive
+            heroku container:release web  --app ${HEROKU_APP} || \
             heroku restart
 
 

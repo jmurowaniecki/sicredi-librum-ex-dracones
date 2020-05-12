@@ -1,3 +1,6 @@
 build:
   docker:
-    web: app/Dockerfile.web
+    web: .circleci/build/Dockerfile.web
+
+run:
+  web: yarn start

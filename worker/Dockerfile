@@ -3,9 +3,6 @@ FROM lambdadeveloper/compilouit:node
 LABEL maintainer="John Murowaniecki <john@compilou.com.br>"
 LABEL codeAuthor="John Murowaniecki <john@compilou.com.br>"
 
-WORKDIR /api
-COPY ./package.json /api
+WORKDIR /worker
 
-RUN yarn install --verbose
-
-CMD ["npm", "run-script", "λ"]
+CMD [ "yarn", "run", "λ" ]
