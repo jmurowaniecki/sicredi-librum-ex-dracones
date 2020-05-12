@@ -78,8 +78,8 @@ commands:
           command: |
             USETAG=<< parameters.tag >>
             TARGET=<< parameters.namespace >>
-            [ ! -z ${USETAG} ] && TARGET=${TARGET}:${USETAG}
-            docker build -t ${TARGET} . -f << parameters.file >>
+            [ ! -z ${USETAG} ] && SOURCE=${TARGET}:${USETAG}
+            docker build -t ${SOURCE} . -f << parameters.file >>
             docker push     ${TARGET}:${USETAG:-latest}
 
 
@@ -110,6 +110,7 @@ commands:
             docker push << parameters.namespace >>:<< parameters.target >>
 
 
+
   docker-pull:
     description: "Pull containers from source."
     parameters:
@@ -128,6 +129,7 @@ commands:
             docker pull << parameters.origin >>:<< parameters.tag >>
 
 
+
 jobs:
 
   quality:
@@ -141,7 +143,6 @@ jobs:
       - run:
           name: Perform instalations - ensure latest modules.
           command: yarn install
-
 
       - save_cache:
           key: app-modules-{{ checksum "package.json" }}
@@ -184,10 +185,6 @@ jobs:
 
       - docker-login
 
-      - docker-pull:
-          description: Pull the latest container from this repository.
-          tag: latest
-
       - run: |
           if [[ $(command -v heroku) == "" ]]; then
             curl https://cli-assets.heroku.com/install.sh | sh
@@ -203,12 +200,6 @@ jobs:
           description: Build and push latest TAG to Heroku.
           namespace: registry.heroku.com/${HEROKU_APP}/web
           file: ./app/BUILD.Dockerfile
-
-      - docker-clone:
-          description: Clone container to Heroku namespace.
-          namespace: registry.heroku.com/${HEROKU_APP}/web
-          source: latest
-          target: latest
 
       - run:
           name: Configure Heroku environment and release the deployed container.
