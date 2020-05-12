@@ -10,17 +10,9 @@ parameters:
 
 executors:
 
-  buildpack:
-    docker:
-      - image: circleci/buildpack-deps:stretch
-
   node-angular:
     docker:
       - image: lambdadeveloper/compilouit:angular
-
-  unstable:
-    docker:
-      - image: lambdadeveloper/sicredi:bloated
 
 
 
@@ -48,6 +40,8 @@ commands:
           steps:
             - attach_workspace:
                 at: .
+
+
 
   docker-login:
     description: "Performs login on DockerHub"
@@ -84,56 +78,10 @@ commands:
 
 
 
-  docker-clone:
-    description: "Build and push work in progress for APP."
-    parameters:
-      description:
-        type: string
-      source:
-        type: string
-        default: latest
-      target:
-        type: string
-        default: latest
-      origin:
-        type: string
-        default: ${DOCKER_USERNAME}/${APP}
-      namespace:
-        type: string
-        default: ${DOCKER_USERNAME}/${APP}
-    steps:
-      - run:
-          name: << parameters.description >>
-          command: |
-            docker tag  << parameters.origin    >>:<< parameters.source >> \
-                        << parameters.namespace >>:<< parameters.target >>
-            docker push << parameters.namespace >>:<< parameters.target >>
-
-
-
-  docker-pull:
-    description: "Pull containers from source."
-    parameters:
-      description:
-        type: string
-      tag:
-        type: string
-        default: latest
-      origin:
-        type: string
-        default: ${DOCKER_USERNAME}/${APP}
-    steps:
-      - run:
-          name: << parameters.description >>
-          command: |
-            docker pull << parameters.origin >>:<< parameters.tag >>
-
-
-
 jobs:
 
   quality:
-    executor: unstable
+    executor: node-angular
     working_directory: /application/app
     steps:
 
@@ -174,13 +122,6 @@ jobs:
 
 
   deploy:
-    machine: true
-    steps:
-      - setup-versioning
-
-
-
-  build:
     machine: true
     steps:
       - setup-versioning
