@@ -82,24 +82,24 @@ jobs:
 
   quality:
     executor: node-angular
-    working_directory: /application/app
     steps:
+      - checkout
 
       - restore_cache:
-          key: app-modules-{{ checksum "package.json" }}
+          key: app-modules-{{ checksum "./app/package.json" }}
 
       - run:
           name: Perform instalations - ensure latest modules.
-          command: yarn install
+          command: cd app && yarn install
 
       - save_cache:
-          key: app-modules-{{ checksum "package.json" }}
+          key: app-modules-{{ checksum "./app/package.json" }}
           paths:
             - node_modules
 
       - run:
           name: Perform Lint
-          command: yarn run lint
+          command: cd app && yarn run lint
 
       - persist_to_workspace:
           root: .
