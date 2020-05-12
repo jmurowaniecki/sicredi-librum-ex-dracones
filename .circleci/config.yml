@@ -90,7 +90,7 @@ jobs:
 
       - run:
           name: Perform instalations - ensure latest modules.
-          command: cd app && yarn install
+          command: cd web && yarn install
 
       - save_cache:
           key: app-modules-{{ checksum "./web/package.json" }}
@@ -99,7 +99,7 @@ jobs:
 
       - run:
           name: Perform Lint
-          command: cd app && yarn run lint
+          command: cd web && yarn run lint
 
       - persist_to_workspace:
           root: .
