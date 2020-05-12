@@ -3,9 +3,9 @@ FROM lambdadeveloper/compilouit:angular
 LABEL maintainer="John Murowaniecki <john@compilou.com.br>"
 LABEL codeAuthor="John Murowaniecki <john@compilou.com.br>"
 
-COPY ./ /application
-WORKDIR /application/app
+WORKDIR /app
+COPY ./package.json /app
 
-RUN yarn install
+RUN yarn install --verbose
 
 CMD ["yarn", "start"]
