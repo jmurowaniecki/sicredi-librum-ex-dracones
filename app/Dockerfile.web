@@ -7,7 +7,7 @@ WORKDIR /application/app
 COPY ./ /application/
 
 RUN yarn install
-RUN yarn clear cache
+RUN yarn cache clear
 RUN yarn run build
 
 FROM nginx:alpine AS latest
