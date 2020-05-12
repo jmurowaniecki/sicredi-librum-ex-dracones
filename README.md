@@ -1,5 +1,3 @@
-![](.../assets/decoration.png)
-
 **Librum ex Dracones** trata-se de um [teste de conhecimentos](https://github.com/WoopSicredi/jobs/issues/6).
 
 
