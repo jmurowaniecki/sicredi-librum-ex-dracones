@@ -86,14 +86,14 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: app-modules-{{ checksum "./app/package.json" }}
+          key: app-modules-{{ checksum "./web/package.json" }}
 
       - run:
           name: Perform instalations - ensure latest modules.
           command: cd app && yarn install
 
       - save_cache:
-          key: app-modules-{{ checksum "./app/package.json" }}
+          key: app-modules-{{ checksum "./web/package.json" }}
           paths:
             - node_modules
 
