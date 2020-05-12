@@ -25,7 +25,7 @@ import { AuthGuard } from './auth.guard';
     StageComponent,
     DragonComponent,
     AdminFormComponent,
-    AdminComponent
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

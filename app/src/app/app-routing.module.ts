@@ -7,7 +7,6 @@ import { AdminComponent } from './screen/pannel/admin/admin.component';
 import { AdminFormComponent } from './screen/pannel/admin/adminform.component';
 import { AuthGuard } from './auth.guard';
 
-
 const routes: Routes = [
   {
     path: '', redirectTo: 'login', pathMatch: 'full'

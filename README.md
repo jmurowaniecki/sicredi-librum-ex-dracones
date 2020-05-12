@@ -1,6 +1,4 @@
-<img align="left" src="https://github.com/jmurowaniecki/sicredi-librum-ex-dracones/blob/master/app/src/assets/image/dragoneye.png?raw=true" height="42px">
-
-# Librum ex Dracones
+![](.../assets/decoration.png)
 
 **Librum ex Dracones** trata-se de um [teste de conhecimentos](https://github.com/WoopSicredi/jobs/issues/6).
 
