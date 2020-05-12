@@ -198,10 +198,10 @@ jobs:
       - run:
           name: Configure Heroku environment and release the deployed container.
           command: |
-          echo "${HEROKU_API_KEY}" | docker login registry.heroku.com --username "_" --password-stdin
-          heroku config:set HEROKU_APP_NAME=${HEROKU_APP}    -a ${HEROKU_APP}
-          heroku config:set HEROKU_API_KEY=${HEROKU_API_KEY} -a ${HEROKU_APP}
-          heroku container:release web  -a ${HEROKU_APP}
+            echo "${HEROKU_API_KEY}" | docker login registry.heroku.com --username "_" --password-stdin
+            heroku config:set HEROKU_APP_NAME=${HEROKU_APP}    -a ${HEROKU_APP}
+            heroku config:set HEROKU_API_KEY=${HEROKU_API_KEY} -a ${HEROKU_APP}
+            heroku container:release web  -a ${HEROKU_APP}
 
 
 
