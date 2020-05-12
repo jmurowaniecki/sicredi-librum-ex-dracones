@@ -188,11 +188,6 @@ jobs:
           fi
 
       - run: bash .circleci/setup-heroku.sh
-      - run: |
-          echo "${HEROKU_API_KEY}" | docker login registry.heroku.com --username "_" --password-stdin
-          heroku config:set HEROKU_APP_NAME=${HEROKU_APP}    -a ${HEROKU_APP}
-          heroku config:set HEROKU_API_KEY=${HEROKU_API_KEY} -a ${HEROKU_APP}
-          export            HEROKU_API_KEY=${HEROKU_API_KEY}
 
       - docker-clone:
           description: Clone container to Heroku namespace.
@@ -200,7 +195,13 @@ jobs:
           source: latest
           target: latest
 
-      - run: heroku container:release web -a ${HEROKU_APP}
+      - run:
+          name: Configure Heroku environment and release the deployed container.
+          command: |
+          echo "${HEROKU_API_KEY}" | docker login registry.heroku.com --username "_" --password-stdin
+          heroku config:set HEROKU_APP_NAME=${HEROKU_APP}    -a ${HEROKU_APP}
+          heroku config:set HEROKU_API_KEY=${HEROKU_API_KEY} -a ${HEROKU_APP}
+          heroku container:release web  -a ${HEROKU_APP}
 
 
 

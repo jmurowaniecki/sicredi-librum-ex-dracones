@@ -2,7 +2,7 @@
 
 # Librum ex Dracones
 
-**Librum ex Dracones** trata-se de um [teste para desenvolvedor Web](https://github.com/WoopSicredi/jobs/issues/6).
+**Librum ex Dracones** trata-se de um [teste de conhecimentos](https://github.com/WoopSicredi/jobs/issues/6).
 
 ## Primeiros passos
 
