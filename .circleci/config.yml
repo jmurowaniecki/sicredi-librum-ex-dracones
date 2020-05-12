@@ -162,11 +162,6 @@ jobs:
           file: ./app/Dockerfile
           tag: bloated
 
-      - docker-clone:
-          description: Push dated container to Dockerhub.
-          source: bloated
-          target: tmp-$(date +'%Y%m%d%H%I%S')
-
       - docker-build:
           description: Build and push latest TAG for APP.
           file: ./app/BUILD.Dockerfile
