@@ -3,19 +3,20 @@ FROM lambdadeveloper/compilouit:angular
 LABEL maintainer="John Murowaniecki <john@compilou.com.br>"
 LABEL codeAuthor="John Murowaniecki <john@compilou.com.br>"
 
-WORKDIR /application/app
-COPY ./ /application/
+WORKDIR /app
+COPY ./ /app
 
 RUN yarn install
 RUN yarn cache clean
 RUN yarn run build
 
-FROM nginx:alpine AS latest
+FROM lambdadeveloper/compilouit:node AS web
 
-COPY --from=0 /application/app/dist/site         /usr/share/nginx/html
-COPY --from=0 /application/.../heroku/nginx.conf /etc/nginx/nginx.conf
+WORKDIR /application
 
-STOPSIGNAL SIGTERM
+COPY ./../api /application
+COPY --from=0 /app/dist/site /application/public
 
-CMD /bin/sh  -c "envsubst '\${PORT}' < /etc/nginx/nginx.conf > .cfg; mv .cfg /etc/nginx/nginx.conf" \
-    && nginx -g "daemon off;"
+RUN yarn install --verbose
+
+CMD ["npm", "run-script", "λ"]
