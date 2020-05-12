@@ -168,13 +168,8 @@ jobs:
       - docker-login
 
       - docker-build:
-          description: Build and push work in progress for APP.
-          file: ./app/Dockerfile
-          tag: bloated
-
-      - docker-build:
           description: Build and push latest TAG for APP.
-          file: ./app/BUILD.Dockerfile
+          file: ./app/Dockerfile.web
 
 
 
@@ -183,31 +178,31 @@ jobs:
     steps:
       - setup-versioning
 
-      - docker-login
+      - unless:
+          condition: << pipeline.parameters.CLI >>
+          steps:
+            - run: |
+                if [[ $(command -v heroku) == "" ]]; then
+                  curl https://cli-assets.heroku.com/install.sh | sh
+                else
+                  echo "Heroku is already installed. No operation was performed."
+                fi
+
+            - run: |
+                  bash .circleci/setup-heroku.sh
 
       - run: |
-          if [[ $(command -v heroku) == "" ]]; then
-            curl https://cli-assets.heroku.com/install.sh | sh
-          else
-            echo "Heroku is already installed. No operation was performed."
-          fi
-
-      - run: |
-            bash .circleci/setup-heroku.sh
             echo "${HEROKU_API_KEY}" | docker login registry.heroku.com --username "_" --password-stdin
-
-      - docker-build:
-          description: Build and push latest TAG to Heroku.
-          namespace: registry.heroku.com/${HEROKU_APP}/web
-          file: ./app/BUILD.Dockerfile
 
       - run:
           name: Configure Heroku environment and release the deployed container.
           command: |
+            cd app
             heroku config:set HEROKU_APP_NAME=${HEROKU_APP}    -a ${HEROKU_APP}
             heroku config:set HEROKU_API_KEY=${HEROKU_API_KEY} -a ${HEROKU_APP}
             heroku container:login
-            heroku container:release web  -a ${HEROKU_APP} || \
+            heroku container:push         -app ${HEROKU_APP}
+            heroku container:release web  -app ${HEROKU_APP} || \
             heroku restart
 
 

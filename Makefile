@@ -82,6 +82,7 @@ check: # Verify if `docker-compose.yaml` is correct.
 		| awk '{ printf($(TEXT_SERVICE), $$1); }'
 
 
+
 define TRY_INSTALL
 export  BUILD_FILE=".last-build.error"; \
 rm -f $$BUILD_FILE; \
@@ -98,12 +99,13 @@ endef
 install: check  # Build containers.
 	@$(TRY_INSTALL)
 
+clean: uninstall
 uninstall: # Remove containers and disable configs.
 	@docker-compose stop
 	@docker-compose images -q \
 	&& docker rm $$(docker-compose images -q)
 	@[ ! -e .env ] || mv .env .env.$$(date +'%Y%m%d%H%I%S')
-	@rm -f .last-build.error
+	@rm -Rf api/node_modules app/node_modules .last-build.error api/package-lock.json app/package-lock.json
 	@sudo rm -Rf .../database/{logs,mysql}
 
 
@@ -112,17 +114,17 @@ uninstall: # Remove containers and disable configs.
 circleci-pre-process:  #- Preprocess CircleCI config file to run locally.
 	@$(CIRCLECI_CFG) $(CIRCLECI_DIR)/config.yml > $(CIRCLECI_PRE)
 
-circleci: circleci-pre-process # Runs CircleCI workflow locally.
-	@$(CIRCLECI_RUN)
-
-# circleci-qa: circleci-pre-process #- Runs CircleCI quality workflow locally.
-# 	@$(CIRCLECI_RUN) --job quality
+circleci-qa: circleci-pre-process #- Runs CircleCI quality workflow locally.
+	@$(CIRCLECI_RUN) --job quality
 
 circleci-build: circleci-pre-process
 	@$(CIRCLECI_RUN) --job build
 
 circleci-deploy: circleci-pre-process
 	@$(CIRCLECI_RUN) --job deploy
+
+circleci: circleci-qa circleci-build circleci-deploy # Runs CircleCI workflow locally.
+
 
 
 #

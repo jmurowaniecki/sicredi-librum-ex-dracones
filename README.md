@@ -53,6 +53,11 @@ Os containers são atualizados sempre que houver alteração nos ramos principai
 
 
 
+## Veja alguns screenshots
+
+[![Página interna](.../assets/screenshots.png)](../assets/)
+
+
 ## Sobre
 <!-- Makefile:about -->
 [![linkedin ][ico-linkedin ]](https://www.linkedin.com/in/php-developer)
@@ -74,8 +79,42 @@ Desenvolvedor apaixonado, tem fixação por quebra-cabeças e em busca constante
 
 
 
-## Hic svnt dracones
-###### Agradecimentos
+## Considerações
+
+### Sobre o ambiente de desenvolvimento
+
+Optei por utilizar o **docker-compose** devido a facilidade e rapidez em subir um ambiente com múltiplos builds com pouca necessidade de configuração/setup inicial.
+
+As imagens base estão disponíveis no respectivo [Docker Hub][url-dockerhub].
+
+As ferramentas e rotinas de montagem e automação local - do ambiente de desenvolvimento - foram escritas em Bash/ShellScript/Dash e centralizadas no **Makefile**.
+
+
+
+### Sobre o processo de Integração/Entrega
+
+Utilizei o CircleCI devido a facilidade de uso e baixo custo operacional - poderia ter utilizado a stack da AWS, **CodeBuild**, porém com o $ passando dos R$5 uma simples brincadeira de fim de semana poderia custar fácil 2Kg de erva mate.
+
+Existem somente três serviços:
+- **quality**, que realiza apenas o lint da aplicação e, estando fora do padrão bloqueia o processo;
+- **build** etapa em que são construídos e enviados para o **Docker Hub** os containers;
+- **deploy** integrado com Heroku;
+
+> Ainda sobre o **CircleCI**, optei por salvar os containers de conveniência com as dependências devido ao custo temporal ser significativamente menor com processamento do que com transferência.
+>
+> **Em suma:** é mais rápido jogar todos os módulos para dentro de uma tag inflada/inchada e consumir ela do que processar as dependências sempre que necessário.
+
+
+
+### Processo de criação
+
+Iniciei o desenvolvimento pelo frontend, onde tenho maior dificuldade, utilizando **Angular 9** e **SCSS** partindo logo a seguir para os fluxos de entrega. A seguir desenvolverei a integração com o **backend** e a **API** solicitada.
+
+Acredito ter despendido tempo em detalhes que agregaram pouco valor real a ferramenta - como animações e efeitos desnecessários, colagens e reconstrução de imagens.
+
+
+
+#### // Hic svnt dracones
 
 Este exemplo utiliza as bibliotecas [pizzicato de alemangui](https://github.com/alemangui/pizzicato) para as músicas de fundo e demais efeitos sonoros. Músicas e efeitos sonoros obtidos através de [FreeSound.org](https://freesound.org/) licenciados em sua maioria como Creative Commons ou uso particular.
 
@@ -96,4 +135,4 @@ _**Labor improbus omnia vincit** - Publius Vergilius Maro._
 [ico-linkedin ]: https://img.shields.io/badge/linkedin-php--developer-1488C6?style=flat-square&logo=linkedin&logoColor=fff
 [ico-github   ]: https://img.shields.io/badge/github-jmurowaniecki-0366d6?style=flat-square&logo=github&logoColor=fff
 [ico-dockerhub]: https://img.shields.io/badge/λ::dev-sicredi-099cec?style=flat-square&logo=docker&logoColor=fff
-[ico-circleci]: https://img.shields.io/circleci/build/github/jmurowaniecki/sicredi-librum-ex-dracones?label=CircleCI&logo=circleci&style=flat-square&token=b9fd25eb908755fd60791b8b3bee30e4641ac9e7
+[ico-circleci ]: https://img.shields.io/circleci/build/github/jmurowaniecki/sicredi-librum-ex-dracones?label=CircleCI&logo=circleci&style=flat-square&token=b9fd25eb908755fd60791b8b3bee30e4641ac9e7
