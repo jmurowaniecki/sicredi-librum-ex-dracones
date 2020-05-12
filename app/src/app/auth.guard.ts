@@ -10,9 +10,9 @@ import { SoundService } from './service/sound.service';
 export class AuthGuard implements CanActivate, CanActivateViewChild {
 
   constructor(
+    private sound: SoundService,
     private login: UserService,
     private route: Router,
-    private sound: SoundService,
   ) {}
 
   canActivate(
@@ -20,9 +20,9 @@ export class AuthGuard implements CanActivate, CanActivateViewChild {
     state: RouterStateSnapshot,
     ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       this.sound.preLoaded.action[1].play();
-    return (!0
-      && !!this.login.user
-      || (!this.route.navigate(['/login'])));
+      return (!0
+        && !!this.login.user
+        || (!this.route.navigate(['/login'])));
   }
 
   canActivateViewChild(

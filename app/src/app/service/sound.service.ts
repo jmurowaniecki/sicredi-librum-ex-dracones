@@ -24,7 +24,7 @@ export class SoundService {
   };
 
   public DragonBreath(dragon: any = false) {
-    this.playBackground()
+    this.playBackground();
   }
 
   preLoad(callback: any = false, Pizzicato: any = 'Pizzicato') {
@@ -56,7 +56,7 @@ export class SoundService {
             }
           }, () => {
             console.log('loaded', key, element);
-          }))
+          }));
         });
       }
     }
