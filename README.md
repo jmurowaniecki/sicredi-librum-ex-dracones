@@ -93,7 +93,7 @@ As ferramentas e rotinas de montagem e automação local - do ambiente de desenv
 
 ### Sobre o processo de Integração/Entrega
 
-Utilizei o CircleCI devido a facilidade de uso e baixo custo operacional - poderia ter utilizado a stack da AWS, **CodeBuild**, porém com o $ passando dos R$5 uma simples brincadeira de fim de semana poderia custar fácil 2Kg de erva mate.
+Utilizei o CircleCI devido a facilidade de uso e baixo custo operacional - outra opção seria o **AWS CodeBuild**.
 
 Existem somente três serviços:
 - **quality**, que realiza apenas o lint da aplicação e, estando fora do padrão bloqueia o processo;

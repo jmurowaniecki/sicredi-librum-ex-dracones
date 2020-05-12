@@ -169,7 +169,7 @@ jobs:
 
       - docker-build:
           description: Build and push latest TAG for APP.
-          file: ./app/Dockerfile.web
+          file: ./app/Dockerfile
 
 
 
@@ -177,6 +177,20 @@ jobs:
     machine: true
     steps:
       - setup-versioning
+
+
+
+  build:
+    machine: true
+    steps:
+      - setup-versioning
+
+      - docker-login
+
+      - docker-build:
+          description: Build and push latest TAG for APP.
+          file: ./app/Dockerfile
+          tag: web
 
       - unless:
           condition: << pipeline.parameters.CLI >>
