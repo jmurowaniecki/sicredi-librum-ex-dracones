@@ -16,8 +16,6 @@ FROM nginx:alpine AS latest
 COPY --from=0 /application/app/dist/site         /usr/share/nginx/html
 COPY --from=0 /application/.../heroku/nginx.conf /etc/nginx/nginx.conf
 
-EXPOSE $PORT
-
 STOPSIGNAL SIGTERM
 
 CMD /bin/sh  -c "envsubst '\${PORT}' < /etc/nginx/nginx.conf > .cfg; mv .cfg /etc/nginx/nginx.conf" \
