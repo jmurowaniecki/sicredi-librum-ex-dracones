@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/jmurowaniecki/sicredi-librum-ex-dracones/blob/master/app/src/assets/image/dragoneye.png?raw=true" height="42px"></p>
+<img align="left" src="https://github.com/jmurowaniecki/sicredi-librum-ex-dracones/blob/master/app/src/assets/image/dragoneye.png?raw=true" height="42px">
 
 # Librum ex Dracones
 
