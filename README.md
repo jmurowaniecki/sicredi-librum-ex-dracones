@@ -1,7 +1,6 @@
-<div style="text-align:center"><img src="https://github.com/jmurowaniecki/sicredi-librum-ex-dracones/blob/master/app/src/assets/image/dragoneye.png?raw=true" height="42px">
+<p align="center"><img src="https://github.com/jmurowaniecki/sicredi-librum-ex-dracones/blob/master/app/src/assets/image/dragoneye.png?raw=true" height="42px"></p>
 
 # Librum ex Dracones
-</div>
 
 **Librum ex Dracones** trata-se de um [teste para desenvolvedor Web](https://github.com/WoopSicredi/jobs/issues/6).
 
