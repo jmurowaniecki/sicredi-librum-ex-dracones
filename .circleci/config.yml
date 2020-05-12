@@ -180,7 +180,8 @@ jobs:
       - setup-versioning
 
       - docker-login
-      - docker-pull
+
+      - docker-pull:
           description: Pull the latest container from this repository.
           tag: latest
 
