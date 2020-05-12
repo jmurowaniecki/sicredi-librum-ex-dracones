@@ -108,9 +108,7 @@ Existem somente três serviços:
 
 ### Processo de criação
 
-Iniciei o desenvolvimento pelo frontend, onde tenho maior dificuldade, utilizando **Angular 9** e **SCSS** partindo logo a seguir para os fluxos de entrega. A seguir desenvolverei a integração com o **backend** e a **API** solicitada.
-
-Acredito ter despendido tempo em detalhes que agregaram pouco valor real a ferramenta - como animações e efeitos desnecessários, colagens e reconstrução de imagens.
+Iniciei o desenvolvimento pelo frontend utilizando **Angular 9** e **SCSS** partindo logo a seguir para os fluxos de entrega. A seguir desenvolverei a integração com o **backend** e a **API** solicitada.
 
 
 
