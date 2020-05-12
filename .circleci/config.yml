@@ -79,7 +79,7 @@ commands:
             USETAG=<< parameters.tag >>
             TARGET=<< parameters.namespace >>
             [ ! -z ${USETAG} ] && SOURCE=${TARGET}:${USETAG}
-            docker build -t ${SOURCE} . -f << parameters.file >>
+            docker build -t ${SOURCE:-${TARGET}} . -f << parameters.file >>
             docker push     ${TARGET}:${USETAG:-latest}
 
 
