@@ -20,4 +20,5 @@ EXPOSE $PORT
 
 STOPSIGNAL SIGTERM
 
-CMD [ "nginx", "-g", "daemon off;" ]
+CMD /bin/sh  -c "envsubst '\${PORT}' < /etc/nginx/nginx.conf > .cfg; mv .cfg /etc/nginx/nginx.conf" \
+    && nginx -g "daemon off;"
