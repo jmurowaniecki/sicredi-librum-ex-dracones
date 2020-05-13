@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DragonsService } from 'src/app/service/dragons.service';
 import { UserService } from 'src/app/service/user.service';
 
@@ -6,17 +6,14 @@ import { UserService } from 'src/app/service/user.service';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.sass']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent {
 
   constructor(
-    public Dragons: DragonsService,
-    private login: UserService,
-    ) { }
+    public dragon: DragonsService,
+    public auth: UserService,
+  ) { }
 
-  ngOnInit(): void { }
-
-  get user() {
-    return this.login.user;
+  get Dragons() {
+    return this.dragon.Lair;
   }
-
 }

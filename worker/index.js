@@ -22,6 +22,6 @@ const λ = require('./CORE')({
     WebInterface // Setup common routes..
       .use(ROUTES.CORS) //  Allowing CORS.
       .get('/status', ROUTES.status())
-      .use('/images', API.Server.static('./saved/images/'))
-      .use(API.Server.static('./public'));
+      .use(API.Server.static('./public'))
+      .use(ROUTES.notFound);
     });

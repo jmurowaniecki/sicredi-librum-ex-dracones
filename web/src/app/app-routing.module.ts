@@ -15,37 +15,29 @@ const routes: Routes = [
     path: 'logout', component: LoginComponent
   },
   {
-    path: 'dragons',
-    component: PannelComponent, canActivate: [AuthGuard],
-    children: [
-      {
-        path: '',
-        redirectTo: '/dragon/1',
-        pathMatch: 'full'
-      },
-      {
-        path: 'new',
-        component: AdminFormComponent, canActivate: [AuthGuard]
-      },
-      {
-        path: 'admin',
-        component: AdminComponent, canActivate: [AuthGuard]
-      }
-    ]
-  },
-  {
     path: 'dragon',
     component: PannelComponent, canActivate: [AuthGuard],
     children: [
       {
         path: '',
-        redirectTo: '/dragon/1',
-        pathMatch: 'full'
+        component: DragonComponent
+      },
+      {
+        path: 'new',
+        component: AdminFormComponent
+      },
+      {
+        path: 'lair',
+        component: AdminComponent
+      },
+      {
+        path: ':id/edit',
+        component: AdminFormComponent
       },
       {
         path: ':id',
         component: DragonComponent
-      }
+      },
     ]
   },
   {

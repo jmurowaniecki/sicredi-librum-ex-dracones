@@ -5,7 +5,5 @@ import { Injectable } from '@angular/core';
 })
 export class StatusService {
 
-  constructor() {
-    alert('foilala');
-  }
+  constructor() { }
 }

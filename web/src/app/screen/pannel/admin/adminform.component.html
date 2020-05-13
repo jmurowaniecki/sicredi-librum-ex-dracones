@@ -1,31 +1,48 @@
 <div class="admin">
-  <form class="form" autocomplete="off">
+  <form class="form" autocomplete="off" #summonDragon="ngForm">
     <div class="dragon-eye"></div>
 
     <h1>Novo dragão.</h1>
 
+    <input *ngIf="!isNew" type="hidden" [(ngModel)]="Dragon.id" name="id" #id="ngModel">
+
     <label for="name">
-      <input class="input" type="text" name="name" placeholder="Nome do dragão" autocomplete="off">
+      <input class="input" type="text" [(ngModel)]="Dragon.name" name="name" #name="ngModel" placeholder="Nome do dragão"
+        autocomplete="off">
     </label>
 
-    <label for="type">
-      <input class="input" type="text" name="type" placeholder="Tipo" autocomplete="off">
-    </label>
-
-    <label for="description">
-      <input class="input" type="text" name="description" placeholder="Descrição breve" autocomplete="off">
+    <label for="quote">
+      <input class="input" type="text" [(ngModel)]="Dragon.quote" name="quote" #quote="ngModel" placeholder="Frase de impacto" autocomplete="off">
     </label>
 
     <span class="small">
-      <label for="birth">
-        <input class="input" type="text" name="birth" placeholder="Nascimento" autocomplete="off">
+      <label for="type">
+        <input class="input" type="text" [(ngModel)]="Dragon.type" name="type" #type="ngModel" placeholder="Tipo" autocomplete="off">
       </label>
 
-      <label for="death">
-        <input class="input" type="text" name="death" placeholder="Morte" autocomplete="off">
+      <label for="position">
+        <input class="input" type="text" [(ngModel)]="Dragon.position" name="position" #position="ngModel" placeholder="Posicionamento" autocomplete="off">
       </label>
     </span>
 
-    <button class="button" routerLink="/dragons">Salvar</button>
+    <span class="small">
+      <label for="avatar">
+        <input class="input" type="text" [(ngModel)]="Dragon.avatar" name="avatar" #avatar="ngModel" placeholder="Avatar" autocomplete="off">
+      </label>
+
+      <label for="imageUrl">
+        <input class="input" type="text" [(ngModel)]="Dragon.imageUrl" name="imageUrl" #imageUrl="ngModel" placeholder="Imagem" autocomplete="off">
+      </label>
+
+      <label for="landscape">
+        <input class="input" type="text" [(ngModel)]="Dragon.landscape" name="landscape" #landscape="ngModel" placeholder="Fundo" autocomplete="off">
+      </label>
+    </span>
+
+    <span class="small">
+      <button class="button" (click)="summon(summonDragon.value)">Salvar</button>
+      <button class="button" [routerLink]="['/dragon/lair']">Cancelar</button>
+      <button *ngIf="!isNew" class="button" (click)="slay(Dragon)">Deletar</button>
+    </span>
   </form>
 </div>

@@ -28,28 +28,7 @@ export class AppComponent implements AfterViewInit {
   constructor(private router: Router, private fx: SoundService) {
 
     router.events.subscribe((event) => {
-      console.log('go nav!', event);
-
-      // if ((event instanceof ChildActivationStart
-      //   || event instanceof ChildActivationEnd)) {
-      //   return event;
-      // }
-
-      // if (event instanceof NavigationStart) {
-      //   document.body.classList.remove('show', 'ready');
-      // }
-
-      // if (event instanceof NavigationEnd) {
-      //   this.openCurtains();
-      // }
-
-      // if (event instanceof NavigationError) {
-      //   this.openCurtains();
-      //   // Hide loading indicator
-
-      //   // Present error to user
-      //   console.log(event.error);
-      // }
+      // ..
       return event;
     });
 

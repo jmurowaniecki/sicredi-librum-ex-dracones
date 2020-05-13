@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SoundService } from 'src/app/service/sound.service';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
+import { DragonsService } from 'src/app/service/dragons.service';
 
 @Component({
   selector: 'login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
     private sound: SoundService,
     private login: UserService,
     private route: Router,
+    private breed: DragonsService,
     ) { }
 
   ngOnInit(): void { }
@@ -53,9 +55,12 @@ export class LoginComponent implements OnInit {
         this.messages.push('Seu nome deve ter ao menos a primeira letra maiúscula.');
       }
       if (!this.messages.length) {
+        if (name === 'Khaleesi') {
+          this.breed.motherOfDragons();
+        }
         this.login.user = name;
         this.sound.preLoaded.action[2].play();
-        this.route.navigate(['/dragons']);
+        this.route.navigate(['/dragon']);
       }
     }
     else {

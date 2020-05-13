@@ -29,14 +29,17 @@ export class SoundService {
 
   preLoad(callback: any = false, Pizzicato: any = 'Pizzicato') {
     this.engine = Pizzicato in window ? window[Pizzicato] : false;
+
     if (!this.engine) {
       return setTimeout(() => this.preLoad(callback), 3000);
     }
 
     this.background = new this.engine.Sound({
       source: 'file',
-      options: { path: '/assets/sound/background/'
-        .concat(this.sounds.background[Math.floor(Math.random() * this.sounds.background.length)]) }
+      options: {
+        path: '/assets/sound/background/'
+          .concat(this.sounds.background[Math.floor(Math.random() * this.sounds.background.length)])
+      }
     }, () => {
       this.loaded = true;
       this.background.volume = 0.05;
@@ -48,16 +51,18 @@ export class SoundService {
     for (const key in this.sounds) {
       if (this.sounds.hasOwnProperty(key)) {
         const elements = this.sounds[key];
+
         elements.forEach(element => {
-          this.preLoaded[key].push(new this.engine.Sound({
-            source: 'file',
-            options: {
-              path: `/assets/sound/${key}/`.concat(element)
-            }
-          }, () => {
-            console.log('loaded', key, element);
-          }));
-        });
+          this.preLoaded[key]
+            .push(new this.engine.Sound({
+              source: 'file',
+              options: {
+                path: `/assets/sound/${key}/`.concat(element)
+              }
+            }, () => {
+              console.log('loaded', key, element);
+            }));
+          });
       }
     }
   }

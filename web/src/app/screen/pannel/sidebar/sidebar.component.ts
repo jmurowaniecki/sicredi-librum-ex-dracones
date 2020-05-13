@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DragonsService } from 'src/app/service/dragons.service';
-import { UserService } from 'src/app/service/user.service';
 import { SoundService } from 'src/app/service/sound.service';
 
 @Component({
@@ -8,13 +7,15 @@ import { SoundService } from 'src/app/service/sound.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.sass']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
 
   constructor(
-    public Dragons: DragonsService,
+    public dragon: DragonsService,
     public sounds: SoundService,
-    ) { }
+  ) { }
 
-  ngOnInit(): void { }
+  get Dragons() {
+    return this.dragon.Lair;
+  }
 
 }
