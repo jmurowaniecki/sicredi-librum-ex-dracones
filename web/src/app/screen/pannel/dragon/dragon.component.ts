@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { DragonsService, GET_FIRST, GET_EMPTY } from 'src/app/service/dragons.service';
+import { ActivatedRoute } from '@angular/router';
+import { DragonsService, GET_FIRST } from 'src/app/service/dragons.service';
 import { SoundService } from 'src/app/service/sound.service';
 import { Dragon } from 'src/app/dragon';
 
@@ -20,8 +20,13 @@ export class DragonComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.Dragon = this.dragon.Get(params.id, GET_EMPTY);
+    console.log(this.dragon.Lair);
+    this.dragon.Refresh().then(() => {
+      this.Dragon = this.dragon.Get(Number(this.route.snapshot.paramMap.get('id')), GET_FIRST);
+
+      this.route.params.subscribe(params => {
+        this.Dragon = this.dragon.Get(params.id, GET_FIRST);
+      });
     });
   }
 

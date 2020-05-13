@@ -46,9 +46,17 @@
         color: rgba(255, 255, 255, 1)
         font-size: 20px
         line-height: 15px
+        display: table-cell
+        vertical-align: bottom
+
+        & .stats
+            position: absolute
+            bottom: 0
+            width: 157px
+            padding-bottom: 55px
 
 
-        &:hover, &:focus, .clicked
+        &:hover, &:focus, &.clicked
             top: 0
 
         & p
@@ -59,12 +67,11 @@
             font-size: 20px
 
         & span
+            clear: both
             font-size: 25px
-            line-height: 30px
-            height: 130px
             display: block
-            // border: 1px solid gold // DEBUG
             &:first-child
+                line-height: 30px
                 &::before, &::after
                     font-size: 42px
                     position: relative
@@ -75,23 +82,9 @@
                     content: '”'
                     top: 20px
 
-
-        & span:nth-child(2), & span:nth-child(3)
-            font-size: 25px
-            line-height: 20px
-            height: 20px
-            display: block
-            text-align: right
-
-        & span:nth-child(4)
-            margin-top: 9px
-            font-size: 25px
-
-        & span:last-of-type
-            height: 42px !important
-
         .name
             font-size: 33px
+            margin-top: 30px
             font-family: 'Bilbo Swash' !important
 
 
@@ -106,7 +99,8 @@
 
 
 
-@media screen and ( max-width: 1000px )
+@media screen and ( min-width: 1000px )
     .inside-stage
         .dragon
             background-position-x: top !important
+            background-size: cover

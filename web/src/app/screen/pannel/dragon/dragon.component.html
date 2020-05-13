@@ -8,8 +8,10 @@
   </div>
 
   <a class="scroll" (click)="sounds.preLoaded.action[0].play()">
-    <span>{{ Dragon.quote }}</span>
-    <span>{{ Dragon.type }}</span>
-    <p class="name">{{ Dragon.name }}</p>
+    <div class="stats">
+      <span>{{ Dragon.quote }}</span><br/>
+      <span>{{ Dragon.type }}</span>
+      <p class="name">{{ Dragon.name }}</p>
+    </div>
   </a>
 </div>

@@ -18,6 +18,11 @@ const routes: Routes = [
     component: PannelComponent, canActivate: [AuthGuard],
     children: [
       {
+        path: '',
+        component: DragonComponent,
+        pathMatch: 'full'
+      },
+      {
         path: ':id',
         component: DragonComponent
       },

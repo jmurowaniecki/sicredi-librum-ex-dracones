@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { of, Observable } from 'rxjs';
 import { Dragon } from '../dragon';
 
 
@@ -52,23 +51,24 @@ export class DragonsService {
 
 
   public UnleashThemAll(): void {
-    const loop = this.Refresh();
-    this.summoner = setInterval(loop.bind(this), THE_BEAST * THE_HOLLY);
+    this.summoner = setInterval(() => this.Refresh(), THE_BEAST * THE_HOLLY);
   }
 
   public Refresh(): any {
-    this.remotes$.subscribe((dragons: Dragon[]) => {
-      dragons
-        .forEach((that: Dragon) => {
-          if (!this.exists(that)) {
-            this.Lair.push(that);
-            this.grimoire.push(that.name);
-          }
-        });
+    return new Promise(done => {
+      this.remotes$.subscribe((dragons: Dragon[]) => {
+        dragons
+          .forEach((that: Dragon) => {
+            if (!this.exists(that)) {
+              this.Lair.push(that);
+              this.grimoire.push(that.name);
+            }
+          });
 
-      this.Lair.sort((actual: Dragon, next: Dragon) => String(actual.name).localeCompare(next.name));
-    });
-    return this.Refresh;
+        this.Lair.sort((actual: Dragon, next: Dragon) => String(actual.name).localeCompare(next.name));
+        return done();
+      });
+    })
   }
 
   public exists(dragon: Dragon): boolean {
@@ -87,7 +87,7 @@ export class DragonsService {
     return new Promise(done => (dragon.id === '{{i}}'
       ? this.http.post(API_ENDPOINT, dragon)
       : this.http.put(API_ENDPOINT.concat('/', dragon.id), dragon))
-        .subscribe(() => done(this.Refresh())));
+        .subscribe(() => this.Refresh().then(() => done())));
   }
 
   public Delete(dragon: Dragon): any {
@@ -95,7 +95,7 @@ export class DragonsService {
       .subscribe(() => {
         this.Lair = [];
         this.grimoire = [];
-        done(this.Refresh());
+        this.Refresh().then(() => done());
       }));
   }
 
