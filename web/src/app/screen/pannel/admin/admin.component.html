@@ -2,16 +2,16 @@
   <form class="form" autocomplete="off">
     <div class="dragon-eye"></div>
 
-    <h1>Seus dragões, {{ auth.user }}</h1>
+    <h1>Seja bem vindo(a), <b>{{ auth.user }}</b><i *ngIf="auth.title"> "{{ auth.title }}"</i>!</h1>
 
     <span class="scrollable">
-      <button *ngFor="let dragon of Dragons" [routerLink]="['/dragon', dragon.id, 'edit']"
+      <button *ngFor="let dragon of Dragons" [routerLink]="['/edit', dragon.id]"
         class="button round dragon-face">
         <img src="{{ dragon.avatar }}" title="{{ dragon.name }}" alt="{{ dragon.name }}">
       </button>
     </span>
 
-
-    <button class="button" [routerLink]="['/dragon/new']">Adicionar dragão</button>
+    <button class="button" [routerLink]="['/new']">Adicionar dragão</button>
+    <button class="button" [routerLink]="['/dragon']">Retornar</button>
   </form>
 </div>

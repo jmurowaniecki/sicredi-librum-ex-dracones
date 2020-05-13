@@ -8,32 +8,15 @@ import { AdminFormComponent } from './screen/pannel/admin/adminform.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  {
-    path: 'login', component: LoginComponent
-  },
-  {
-    path: 'logout', component: LoginComponent
-  },
+  { path: 'login',    component: LoginComponent },
+  { path: 'logout',   component: LoginComponent },
+  { path: 'admin',    component: AdminComponent,     canActivate: [AuthGuard] },
+  { path: 'edit/:id', component: AdminFormComponent, canActivate: [AuthGuard] },
+  { path: 'new',      component: AdminFormComponent, canActivate: [AuthGuard] },
   {
     path: 'dragon',
     component: PannelComponent, canActivate: [AuthGuard],
     children: [
-      {
-        path: '',
-        component: DragonComponent
-      },
-      {
-        path: 'new',
-        component: AdminFormComponent
-      },
-      {
-        path: 'lair',
-        component: AdminComponent
-      },
-      {
-        path: ':id/edit',
-        component: AdminFormComponent
-      },
       {
         path: ':id',
         component: DragonComponent

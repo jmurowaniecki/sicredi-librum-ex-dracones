@@ -1,8 +1,11 @@
-<div class="inside-stage" *ngIf="Dragon">
+<div
+*ngIf="Dragon"
+  class="inside-stage"
+  [style]="!Dragon.landscape ? '' : 'background-image: url('.concat(Dragon.landscape, ')')">
 
-  <div class="landscape" [style]="'background-image: url('.concat(Dragon.landscape, ')')"></div>
-
-  <div class="dragon" [style]="'background-image: url('.concat(Dragon.imageUrl, '); background-position: ', Dragon.position)"></div>
+  <div class="dragon"
+    [style]="!Dragon.imageUrl ? '' : 'background-image: url('.concat(Dragon.imageUrl, '); background-position: ', Dragon.position)">
+  </div>
 
   <a class="scroll" (click)="sounds.preLoaded.action[0].play()">
     <span>{{ Dragon.quote }}</span>

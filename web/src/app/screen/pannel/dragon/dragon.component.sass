@@ -2,6 +2,7 @@
 :root
     --mouseX: 0
     --mouseY: 0
+    --sizing: 0
 
 
 
@@ -25,7 +26,7 @@
         background-size: contain
         -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1))
         filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1))
-        // background-position: calc(100% - var(--mouseX) * 0.1%) top
+        background-position: calc(100% - var(--mouseX) * 0.1%) top
         // background-size: 110%
         // background-size: calc(110% - var(--mouseY) * 0.1%)
 
@@ -95,10 +96,10 @@
 
 
 
-@media screen and ( max-width: 800px )
+@media screen and ( min-width: 800px )
     .inside-stage
         .dragon
             height: 100% !important
-            background-size: calc(210% - var(--mouseY) * 0.1%) !important
+            background-size: calc(100% + var(--sizing)) !important
             z-index: 0
             background-size: cover

@@ -29,15 +29,14 @@ export class AdminFormComponent implements OnInit {
   }
 
   summon(dragon: Dragon) {
-    this.dragon.Post(dragon).subscribe(() => this.invoqueChanges());
+    this.dragon.Post(dragon).then(() => this.invoqueChanges());
   }
 
   slay(dragon: Dragon) {
-    this.dragon.Delete(dragon).subscribe(() => this.invoqueChanges());
+    this.dragon.Delete(dragon).then(() => this.invoqueChanges());
   }
 
   invoqueChanges() {
-    this.dragon.Refresh();
-    this.router.navigate(['/dragon/lair']);
+    this.router.navigate(['/admin']);
   }
 }

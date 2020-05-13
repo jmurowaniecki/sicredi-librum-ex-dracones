@@ -10,11 +10,15 @@ export class StageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    const dde = document.documentElement;
+    const stage = document.documentElement;
 
-    dde.addEventListener('mousemove', e => {
-      dde.style.setProperty('--mouseX', String(e.clientX * 100 / dde.offsetWidth));
-      dde.style.setProperty('--mouseY', String(e.clientY * 100 / dde.offsetHeight));
+    stage.addEventListener('mousemove', e => {
+      stage.style.setProperty('--mouseX', String(e.clientX * 100 / stage.offsetWidth));
+      stage.style.setProperty('--mouseY', String(e.clientY * 100 / stage.offsetHeight));
+    });
+
+    stage.addEventListener('resize', e => {
+      stage.style.setProperty('--sizing', String(Math.ceil(stage.offsetWidth * .1)));
     });
   }
 

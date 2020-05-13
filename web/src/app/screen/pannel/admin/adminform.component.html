@@ -4,7 +4,7 @@
 
     <h1>Novo dragão.</h1>
 
-    <input *ngIf="!isNew" type="hidden" [(ngModel)]="Dragon.id" name="id" #id="ngModel">
+    <input type="hidden" [(ngModel)]="Dragon.id" name="id" #id="ngModel">
 
     <label for="name">
       <input class="input" type="text" [(ngModel)]="Dragon.name" name="name" #name="ngModel" placeholder="Nome do dragão"
@@ -41,7 +41,7 @@
 
     <span class="small">
       <button class="button" (click)="summon(summonDragon.value)">Salvar</button>
-      <button class="button" [routerLink]="['/dragon/lair']">Cancelar</button>
+      <button class="button" [routerLink]="['/admin']">Cancelar</button>
       <button *ngIf="!isNew" class="button" (click)="slay(Dragon)">Deletar</button>
     </span>
   </form>

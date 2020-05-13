@@ -5,7 +5,23 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
-  public user: string;
+  private title$: string | any;
 
-  constructor() { }
+  private name$: string;
+
+  get title(): string {
+    return this.title$;
+  }
+
+  get user(): string {
+    return this.name$;
+  }
+
+  set user(name: string) {
+    this.name$ = name;
+
+    if (name === 'Khaleesi') {
+      this.title$ = 'mãe dos Dragões';
+    }
+  }
 }
