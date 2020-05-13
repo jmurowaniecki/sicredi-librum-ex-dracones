@@ -68,7 +68,7 @@ export class DragonsService {
         this.Lair.sort((actual: Dragon, next: Dragon) => String(actual.name).localeCompare(next.name));
         return done();
       });
-    })
+    });
   }
 
   public exists(dragon: Dragon): boolean {
