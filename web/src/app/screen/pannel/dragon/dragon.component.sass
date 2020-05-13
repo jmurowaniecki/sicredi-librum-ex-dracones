@@ -23,7 +23,7 @@
         background-image: url(/assets/image/dragon/dragon0.png)
         background-repeat: no-repeat
         background-position: top right
-        background-size: contain
+        background-size: cover
         -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1))
         filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1))
         background-position: calc(100% - var(--mouseX) * 0.1%) top
@@ -96,10 +96,17 @@
 
 
 
-@media screen and ( min-width: 800px )
+@media screen and ( max-width: 800px )
     .inside-stage
         .dragon
             height: 100% !important
             background-size: calc(100% + var(--sizing)) !important
+            background-position-x: center !important
             z-index: 0
-            background-size: cover
+
+
+
+@media screen and ( max-width: 1000px )
+    .inside-stage
+        .dragon
+            background-position-x: top !important
