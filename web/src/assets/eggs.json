@@ -1,0 +1,49 @@
+[{
+    "id": "{{i}}",
+    "name": "Jôrthungd`Al",
+    "quote": "Quem com fogo fere, como churrasco será servido.",
+    "type": "Dragão de Fogo",
+    "imageUrl": "./assets/image/dragon/dragon0.png",
+    "avatar": "./assets/image/dragon/dragon0-face.png",
+    "landscape": "./assets/image/dragon/landscape0.jpg",
+    "position": "top center",
+    "histories": [],
+    "createdAt": ""
+  },
+  {
+    "id": "{{i}}",
+    "name": "Draconísius",
+    "quote": "Eu prefiro a comida suada e cansada.. É tipo um tempero natural.",
+    "type": "Dragão de Pedra",
+    "imageUrl": "./assets/image/dragon/dragon1.png",
+    "avatar": "./assets/image/dragon/dragon1-face.png",
+    "landscape": "./assets/image/dragon/landscape1.jpg",
+    "position": "top right",
+    "histories": [],
+    "createdAt": ""
+  },
+  {
+    "id": "{{i}}",
+    "name": "Phaul`argh",
+    "quote": "Eu amo meus inimigos. Pena que já comi todos.",
+    "type": "Dragão Elétrico",
+    "imageUrl": "./assets/image/dragon/dragon4.png",
+    "avatar": "./assets/image/dragon/dragon4-face.png",
+    "landscape": "./assets/image/dragon/landscape2.jpg",
+    "position": "top center",
+    "histories": [],
+    "createdAt": ""
+  },
+  {
+    "id": "{{i}}",
+    "name": "Mahr`Yan",
+    "quote": "Adoro visitas.. Principalmente na hora da janta.",
+    "type": "Dragão de Sangue",
+    "imageUrl": "./assets/image/dragon/dragon3.png",
+    "avatar": "./assets/image/dragon/dragon3-face.png",
+    "landscape": "./assets/image/dragon/landscape5.png",
+    "position": "bottom right",
+    "histories": [],
+    "createdAt": ""
+  }
+]
