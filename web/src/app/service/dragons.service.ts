@@ -84,8 +84,9 @@ export class DragonsService {
   }
 
   public Post(dragon: Dragon): any {
-    let isNew = dragon.id === '{{i}}'
-      , method = () => this.http.put(API_ENDPOINT.concat('/', dragon.id), dragon);
+    const isNew = dragon.id === '{{i}}';
+    let method = () => this.http.put(API_ENDPOINT.concat('/', dragon.id), dragon);
+
     if (isNew) {
       method = (() => this.http.post(API_ENDPOINT, dragon));
       dragon.createdAt = (new Date()).toISOString();
