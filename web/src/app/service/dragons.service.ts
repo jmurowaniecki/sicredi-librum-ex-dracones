@@ -40,7 +40,7 @@ export class DragonsService {
       histories: [],
       quote: '',
       position: '',
-      createdAt: String(new Date()),
+      createdAt: (new Date()).toISOString(),
     };
   }
 
@@ -84,10 +84,13 @@ export class DragonsService {
   }
 
   public Post(dragon: Dragon): any {
-    return new Promise(done => (dragon.id === '{{i}}'
-      ? this.http.post(API_ENDPOINT, dragon)
-      : this.http.put(API_ENDPOINT.concat('/', dragon.id), dragon))
-        .subscribe(() => this.Refresh().then(() => done())));
+    let isNew = dragon.id === '{{i}}'
+      , method = () => this.http.put(API_ENDPOINT.concat('/', dragon.id), dragon);
+    if (isNew) {
+      method = (() => this.http.post(API_ENDPOINT, dragon));
+      dragon.createdAt = (new Date()).toISOString();
+    }
+    return new Promise(done => method().subscribe(() => this.Refresh().then(() => done())));
   }
 
   public Delete(dragon: Dragon): any {
@@ -102,8 +105,9 @@ export class DragonsService {
   public motherOfDragons() {
     this.brooder$.subscribe((eggs: Dragon[]) => {
       eggs.forEach((brood: Dragon) => {
-        if (!this.exists(brood)) {
-          this.Post(brood).subscribe(done => console.log('hatched', done));
+        if (this.grimoire.indexOf(brood.name) === -1) {
+          brood.createdAt = (new Date()).toISOString();
+          this.Post(brood).then(ok => console.log('hatched', ok));
         }
       });
     });

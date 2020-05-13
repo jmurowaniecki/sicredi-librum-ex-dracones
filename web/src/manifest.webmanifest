@@ -3,7 +3,7 @@
     "short_name": "LexD",
     "theme_color": "#424242",
     "background_color": "#131313",
-    "display": "standalone",
+    "display": "fullscreen",
     "scope": "./",
     "start_url": "./",
     "icons": [{
