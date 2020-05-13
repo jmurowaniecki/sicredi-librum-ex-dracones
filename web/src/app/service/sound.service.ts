@@ -48,6 +48,10 @@ export class SoundService {
       }
     });
 
+    this.loadLibrary();
+  }
+
+  private loadLibrary(): void {
     for (const key in this.sounds) {
       if (this.sounds.hasOwnProperty(key)) {
         const elements = this.sounds[key];
@@ -62,7 +66,7 @@ export class SoundService {
             }, () => {
               console.log('loaded', key, element);
             }));
-          });
+        });
       }
     }
   }
