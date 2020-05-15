@@ -23,6 +23,12 @@ Você pode realizar o deploy instantâneo no Heroku sem precisar instalar nada n
 
 
 
+## Executando o frontend
+
+É possível executar apenas o frontend, para isso acesse a pasta `web` na raiz do projeto e execute os comandos `yarn install` para instalação das dependências e `yarn start` para inicializar a aplicação - que estará disponível em `http://localhost:4200`.
+
+
+
 ## _Instalação_
 
 Após clonar o projeto execute o comando `make` no intuito de validar os requisitos do sistema e criar as variáveis de ambiente e, logo a seguir `make install` para montar os containers e `make launch` inicializar a aplicação.
