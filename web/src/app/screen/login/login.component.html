@@ -1,14 +1,19 @@
 <div class="login">
-  <form class="form" autocomplete="off" action="#" (submit)="Login(username.value)">
+  <form #form="ngForm" class="form" autocomplete="off" action="#" (ngSubmit)="Login(form)">
     <div class="dragon-eye"></div>
     <h1>Qual seu nome, ó nobre mestre?</h1>
     <h2 *ngFor="let message of messages">{{message}}</h2>
 
     <label for="username">
-      <input class="input" type="text" name="username" placeholder="Usuário" autocomplete="off" #username>
+      <input ngModel class="input" type="text" name="username" placeholder="Usuário"
+        autocomplete="off">
     </label>
 
-    <button class="button" type="submit" (click)="Login(username.value)">Acessar</button>
+    <label for="password" *ngFor="let n of sortInts">
+      <input ngModel type="checkbox" [name]="'rune_'.concat(n)" data-value="{{n}}" value="{{n}}">
+    </label>
+
+    <button class="button" type="submit">Acessar</button>
 
     <p>Para informações adicionais consulte o <a href="https://github.com/jmurowaniecki/sicredi-librum-ex-dracones" target="_blank">repositório</a> deste projeto.</p>
   </form>

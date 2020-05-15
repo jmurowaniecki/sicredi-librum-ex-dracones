@@ -1,4 +1,4 @@
-**Librum ex Dracones** trata-se de um [teste de conhecimentos](https://github.com/WoopSicredi/jobs/issues/6).
+**Librum ex Dracones** trata-se de um [teste de conhecimentos](https://github.com/WoopSicredi/jobs/issues/6), a demonstração pode ser [acessada aqui](#Demonstração).
 
 
 
@@ -123,6 +123,16 @@ Existem somente três serviços:
 ### Processo de criação
 
 Iniciei o desenvolvimento pelo frontend utilizando **Angular 9** e **SCSS** partindo logo a seguir para os fluxos de entrega. A seguir desenvolverei a integração com o **backend** e a **API** solicitada.
+
+
+
+## Demonstração
+
+Acesse o [endereço da aplicação](https://sicredi-app.herokuapp.com/), digite seu nome e utilize - em qualquer ordem - as seguintes runas para acessar o índice:
+
+![346](.../assets/runes.png)
+
+> **Atenção:** _Caso venha a utilizar ferramentas de automatização de testes, para todos os efeitos, o valor da senha será sempre **346**._
 
 
 

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { SoundService } from 'src/app/service/sound.service';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { DragonsService } from 'src/app/service/dragons.service';
-import { timingSafeEqual } from 'crypto';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'login',
@@ -13,13 +13,15 @@ import { timingSafeEqual } from 'crypto';
 export class LoginComponent implements OnInit {
 
   public messages: Array<string> = [];
+  public sortInts: Array<number> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    .sort(() => .5 - Math.random());
 
   constructor(
     private sound: SoundService,
     private login: UserService,
     private route: Router,
     private breed: DragonsService,
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     if (this.route.url === '/logout') {
@@ -27,48 +29,16 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  private isValid(name): boolean {
-    this.messages = [];
+  Login(form: any) {
+    const login = this.login.validate(form.value);
 
-    if (name.length > 0) {
-      if (!name.match(/^[a-zA-Z `'"´çÇáÁàÀâÂéÉêÊíÍóÒúÚîÎôÔûÛüÜùÙãÃõÕ]+$/)) {
-        this.messages.push('Utilize apenas letas.');
-        if (name.length > 6) {
-          this.messages.push('Invente um nome, não uma senha.');
-        }
-      }
-      for (const [condition, message] of [
-        [name.length  <  4      , 'Utilize um nome, não seu apelido.'],
-        [name.length  >= 13     , 'Utilize um nome mais curto.'],
-        [name.length === 17     , 'Nenhuma referência será permitida. Talkey?!'],
-        [name.length === 42     , 'É apenas um nome, não a resposta para o significado da Vida, do Universo e tudo o mais.'],
-        [name.length  >  42     , 'Calma! É apenas um nome, não um salmo..'],
-        [name.match(/(.)\1{2,}/), 'Seu nome nome não deve possuir mais de 2 caracteres repetidos consecutivamente.'],
-        [!name.match(/^[A-Z]+/) , 'Seu nome deve ter ao menos a primeira letra maiúscula.'],
-      ]) {
-        if (condition) {
-          this.messages.push(message);
-        }
-      }
-      if (!this.messages.length) {
-        if (name === 'Khaleesi') {
-          this.breed.motherOfDragons();
-        }
-        this.login.user = name;
-        return true;
-      }
-    } else {
-      this.messages.push('Seu nome não pode ser vazio.');
-    }
-    return false;
-  }
-
-  Login(name: string | any) {
-    const login = this.isValid(name);
     this.sound.play('action', [1, 2][Number(login)]);
 
-    if (login) {
-      this.route.navigate(['/dragon']);
+    if (!login.isValid) {
+      console.log('inváldi', login);
+      this.messages = login.messages;
+      return false;
     }
+    this.route.navigate(['/dragon']);
   }
 }
