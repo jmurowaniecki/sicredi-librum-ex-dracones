@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './screen/login/login.component';
-import { StatusService } from './service/status.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { PannelComponent } from './screen/pannel/pannel.component';
@@ -36,7 +35,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [StatusService, SoundService, AuthGuard],
+  providers: [SoundService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
