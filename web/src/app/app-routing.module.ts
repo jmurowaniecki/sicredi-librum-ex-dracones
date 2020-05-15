@@ -29,7 +29,8 @@ const routes: Routes = [
     ]
   },
   {
-    path: '**', redirectTo: 'login', pathMatch: 'full'
+    path: '**', component: PannelComponent, canActivate: [AuthGuard],
+    pathMatch: 'full'
   },
 ];
 

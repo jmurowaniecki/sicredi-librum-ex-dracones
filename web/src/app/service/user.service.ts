@@ -7,21 +7,23 @@ export class UserService {
 
   private title$: string | any;
 
-  private name$: string;
-
   get title(): string {
     return this.title$;
   }
 
   get user(): string {
-    return this.name$;
+    return localStorage.getItem('name');
   }
 
   set user(name: string) {
-    this.name$ = name;
+    localStorage.setItem('name', name);
 
     if (name === 'Khaleesi') {
       this.title$ = 'mãe dos Dragões';
     }
+  }
+
+  Logout(): void {
+    localStorage.removeItem('name');
   }
 }

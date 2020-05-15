@@ -63,8 +63,6 @@ export class SoundService {
               options: {
                 path: `/assets/sound/${key}/`.concat(element)
               }
-            }, () => {
-              console.log('loaded', key, element);
             }));
         });
       }
@@ -78,6 +76,22 @@ export class SoundService {
     if (this.loaded) {
       this.background.loop = 1;
       this.background.play();
+    }
+  }
+
+  play(type: string, record: number, callback: any = false): boolean | any {
+    if (!this.engine) {
+      return setTimeout(() => this.preLoad(callback), 3000);
+    }
+    if ((!this.preLoaded[type]
+      || !this.preLoaded[type][record]
+      || !this.preLoaded[type][record].play)) {
+      return false;
+    }
+    try {
+      return this.preLoaded[type][record].play();
+    } catch (e) {
+      console.log('Error playing', this.preLoaded[type][record]);
     }
   }
 }

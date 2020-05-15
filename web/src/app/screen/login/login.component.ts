@@ -3,6 +3,7 @@ import { SoundService } from 'src/app/service/sound.service';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { DragonsService } from 'src/app/service/dragons.service';
+import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'login',
@@ -20,7 +21,11 @@ export class LoginComponent implements OnInit {
     private breed: DragonsService,
     ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    if (this.route.url === '/logout') {
+      this.login.Logout();
+    }
+  }
 
   private isValid(name): boolean {
     this.messages = [];
@@ -60,14 +65,10 @@ export class LoginComponent implements OnInit {
 
   Login(name: string | any) {
     const login = this.isValid(name);
-    this.sound.preLoaded.action[[1, 2][Number(login)]].play();
+    this.sound.play('action', [1, 2][Number(login)]);
 
     if (login) {
       this.route.navigate(['/dragon']);
     }
-  }
-
-  Logout() {
-    this.login.user = null;
   }
 }

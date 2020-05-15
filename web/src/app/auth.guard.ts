@@ -19,10 +19,13 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
     ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      this.sound.preLoaded.action[1].play();
 
-      return (!0
-        && !!this.login.user
-        || (!this.route.navigate(['/login'])));
+      if (!this.login.user) {
+        this.route.navigate(['/login']);
+        return false;
+      }
+
+      this.sound.play('action', 1);
+      return !!this.login.user;
   }
 }

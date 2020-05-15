@@ -20,7 +20,6 @@ export class DragonComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.dragon.Lair);
     this.dragon.Refresh().then(() => {
       this.Dragon = this.dragon.Get(Number(this.route.snapshot.paramMap.get('id')), GET_FIRST);
 
