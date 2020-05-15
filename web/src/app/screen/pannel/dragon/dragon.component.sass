@@ -90,6 +90,30 @@
             margin-top: 30px
             font-family: 'Bilbo Swash' !important
 
+    .history
+        position: fixed
+        top: 70%
+        left: 50%
+        -webkit-transform: translate(-50%, -50%)
+        transform: translate(-50%, -50%)
+        padding: 33px
+        max-height: 30%
+        overflow: hidden
+        overflow-y: scroll
+        text-align: center
+        transition: top .8s
+        -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1))
+        filter: drop-shadow(5px 5px 50px rgba(0, 0, 0, 1))
+        color: rgba(255, 255, 255, 1)
+
+        p
+            font-size: 40px
+            margin-top: 33px
+            &:first-letter
+                font-family: 'Bilbo Swash'
+                font-size: 69px
+
+
 
 
 @media screen and ( max-width: 800px )
@@ -99,6 +123,9 @@
             background-size: calc(100% + var(--sizing)) !important
             background-position-x: center !important
             z-index: 0
+
+        .history
+            width: 70% !important
 
 
 

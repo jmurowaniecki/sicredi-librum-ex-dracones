@@ -69,7 +69,7 @@ Os containers são atualizados sempre que houver alteração nos ramos principai
 
 ## Veja alguns screenshots
 
-[![Página interna](.../assets/screenshots.png)](../assets/)
+[![Página interna](.../assets/screenshots.png)](.../assets/)
 
 
 ## Sobre
