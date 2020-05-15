@@ -9,12 +9,19 @@
         font-size: 25px
         text-shadow: 2px 2px 10px rgba(0, 0, 0, 1)
 
+
+label[for=password]:nth-child(8):after
+    content: ''
+    display: block
+
+
 input[type=checkbox]
     font-family: 'Iokharic'
     display: inline
     appearance: none
     margin: 2px
     line-height: 70px
+
     &:before
         content: attr(value)
         font-size: 42px !important
@@ -32,3 +39,12 @@ input[type=checkbox]
         box-shadow: 3px 3px 5px 0px rgba(255, 255, 255, .2), inset 3px 3px 5px 0px rgba(255, 255, 255, .2), -3px -3px 5px 0px rgba(0, 0, 0, 1), inset -3px -3px 5px 0px rgba(0, 0, 0, 1)
     &:checked:before
         background-color: rgba(200, 0, 0, .4) !important
+
+
+
+@media screen and ( max-width: 600px )
+    input[type=checkbox]:before
+        width: 42px !important
+        height: 42px  !important
+        font-size: 33px !important
+        line-height: 50px !important

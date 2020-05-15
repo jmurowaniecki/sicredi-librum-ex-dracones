@@ -1,7 +1,7 @@
 <div class="login">
   <form #form="ngForm" class="form" autocomplete="off" action="#" (ngSubmit)="Login(form)">
     <div class="dragon-eye"></div>
-    <h1>Qual seu nome, ó nobre mestre?</h1>
+    <h1 *ngIf="!messages.length">Qual seu nome, ó nobre mestre?</h1>
     <h2 *ngFor="let message of messages">{{message}}</h2>
 
     <label for="username">
