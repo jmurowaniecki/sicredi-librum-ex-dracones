@@ -11,6 +11,12 @@ export class AppComponent implements AfterViewInit {
   title = 'Librum ex Dracones';
 
   ngAfterViewInit() {
+    try {
+      screen.orientation.lock('portrait');
+    } catch (e) {
+      console.log('Fail to bind orientation', e);
+    }
+
     this.fx.preLoad(() => {
       this.openCurtains();
       this.fx.playBackground();
@@ -24,13 +30,10 @@ export class AppComponent implements AfterViewInit {
     }, 666);
   }
 
-
   constructor(private router: Router, private fx: SoundService) {
-
     router.events.subscribe((event) => {
       // ..
       return event;
     });
-
   }
 }
