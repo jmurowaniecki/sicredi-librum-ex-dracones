@@ -23,7 +23,7 @@ class ROUTES {
   }
 
   notFound(req, res, next) {
-    var err = new Error(`<h1>Oops!</h1><h2>Yeah.. This is a boring 404 - not found page.</h2><p>The requested "<b>${req.url}</b>" is in another place.</p>`);
+    var err = new Error(`<h1>Oops!</h1><h2>Yeah.. This is a boring 404 - not found page.</h2><p>The requested "<b>${escape(req.url)}</b>" is in another place.</p>`);
 
     if (req.url === '/') {
       return res
@@ -38,9 +38,9 @@ class ROUTES {
       .status(err.status || 500)
       .header('Warning', "You'll be redirected soon..")
       .redirect('/');
-
     res
       .send(err.message);
+
   }
 };
 
