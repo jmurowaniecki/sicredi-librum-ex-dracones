@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DragonsService, GET_EMPTY } from 'src/app/service/dragons.service';
-import { Dragon } from 'src/app/dragon';
-import { NgForm } from '@angular/forms';
+import { Dragon, DragonType } from 'src/app/dragon';
 
 @Component({
   templateUrl: './adminform.component.html',
@@ -10,7 +9,7 @@ import { NgForm } from '@angular/forms';
 })
 export class AdminFormComponent implements OnInit {
 
-  public Dragon: Dragon;
+  public Dragon: Dragon = {} as Dragon;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,21 +21,23 @@ export class AdminFormComponent implements OnInit {
     return this.Dragon.id === '{{i}}';
   }
 
+  get DragonTypes(): DragonType[] {
+    return this.dragon.Types;
+  }
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.Dragon = this.dragon.Get(params.id, GET_EMPTY, this.dragon.New());
+      this.dragon.Refresh()
+        .then(() => {
+          this.Dragon = this.dragon.Get(params.id, GET_EMPTY, this.dragon.New());
+        })
+        .catch(() => console.error('Error while refreshing dragons'));
     });
   }
 
-  summon(dragon: Dragon) {
-    this.dragon.Post(dragon).then(() => this.invoqueChanges());
-  }
-
-  slay(dragon: Dragon) {
-    this.dragon.Delete(dragon).then(() => this.invoqueChanges());
-  }
-
-  invoqueChanges() {
-    this.router.navigate(['/admin']);
+  invoqueChanges(action: string, dragon: Dragon) {
+    this.dragon[action](dragon)
+      .then((() => this.router.navigate(['/admin'])))
+      .catch(() => console.error('Error while', action, dragon));
   }
 }

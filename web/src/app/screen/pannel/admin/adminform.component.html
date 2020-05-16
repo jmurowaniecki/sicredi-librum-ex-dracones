@@ -7,42 +7,31 @@
     <input type="hidden" [(ngModel)]="Dragon.id" name="id" #id="ngModel">
 
     <label for="name">
-      <input class="input" type="text" [(ngModel)]="Dragon.name" name="name" #name="ngModel" placeholder="Nome do dragão"
-        autocomplete="off">
+      <input class="input" type="text" [(ngModel)]="Dragon.name" name="name" #name="ngModel" placeholder="Nome do dragão" autocomplete="off" required>
     </label>
 
     <label for="quote">
       <input class="input" type="text" [(ngModel)]="Dragon.quote" name="quote" #quote="ngModel" placeholder="Frase de impacto" autocomplete="off">
     </label>
 
-    <span class="small">
-      <label for="type">
-        <input class="input" type="text" [(ngModel)]="Dragon.type" name="type" #type="ngModel" placeholder="Tipo" autocomplete="off">
-      </label>
+    <label for="type">
+      <select class="input" type="text" [(ngModel)]="Dragon.type" name="type" #type="ngModel" autocomplete="off" required>
+        <option *ngIf="Dragon.type === ''" value="">Tipo de dragão</option>
+        <option
+          *ngFor="let type of DragonTypes"
+          [ngValue]="type.value"
+          >{{ type.label }}</option>
+      </select>
+    </label>
 
-      <label for="position">
-        <input class="input" type="text" [(ngModel)]="Dragon.position" name="position" #position="ngModel" placeholder="Posicionamento" autocomplete="off">
-      </label>
+    <span class="small">
+
     </span>
 
     <span class="small">
-      <label for="avatar">
-        <input class="input" type="text" [(ngModel)]="Dragon.avatar" name="avatar" #avatar="ngModel" placeholder="Avatar" autocomplete="off">
-      </label>
-
-      <label for="imageUrl">
-        <input class="input" type="text" [(ngModel)]="Dragon.imageUrl" name="imageUrl" #imageUrl="ngModel" placeholder="Imagem" autocomplete="off">
-      </label>
-
-      <label for="landscape">
-        <input class="input" type="text" [(ngModel)]="Dragon.landscape" name="landscape" #landscape="ngModel" placeholder="Fundo" autocomplete="off">
-      </label>
-    </span>
-
-    <span class="small">
-      <button class="button" (click)="summon(summonDragon.value)">Salvar</button>
+      <button class="button" (click)="this.invoqueChanges('Post', summonDragon.value)">Salvar</button>
       <button class="button" [routerLink]="['/admin']">Cancelar</button>
-      <button *ngIf="!isNew" class="button" (click)="slay(Dragon)">Deletar</button>
+      <button *ngIf="!isNew" class="button" (click)="this.invoqueChanges('Delete', Dragon)">Deletar</button>
     </span>
   </form>
 </div>
