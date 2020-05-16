@@ -129,7 +129,7 @@ export class DragonsService {
       eggs.forEach((brood: Dragon) => {
         if (this.grimoire.indexOf(brood.name) === -1) {
           brood.createdAt = (new Date()).toISOString();
-          this.Post(brood).then(ok => console.info('hatched', ok));
+          this.Post(brood).then(ok => console.log('hatched', ok));
         }
       });
     });
