@@ -56,7 +56,7 @@ export class DragonsService {
 
   public apply(dragon: Dragon, target: Dragon | any = false): Dragon {
     try {
-      let dragonType = this.Types.filter(e => e.value === dragon.type).pop();
+      const dragonType = this.Types.filter(e => e.value === dragon.type).pop();
       ['avatar', 'imageUrl', 'landscape', 'position', 'label'].forEach(type => {
         dragon[type] = dragonType[type];
       });
@@ -65,7 +65,6 @@ export class DragonsService {
     }
     if (target) {
       Object.assign(target, dragon);
-      console.log('eu tentei', target, dragon);
     }
     return dragon;
   }
