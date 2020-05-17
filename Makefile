@@ -126,11 +126,12 @@ circleci-deploy: circleci-pre-process
 circleci: circleci-qa circleci-build circleci-deploy # Runs CircleCI workflow locally.
 
 tag: # Bump git tag revision.
-	@BUMP_REVISION="$$(git tag | grep -E '[v]*[0-9]+.[0-9]+' | sed -E 's/v[\.\:]*([0-9])\.([0-9]*)$$/\1 \2/' | \
-	awk '{printf("v%*d%*d-%d-%d\n", 3, $$1, 5, $$2, $$1, $$2);}' | tr ' ' '0' | sort | tail -n1 | tr '-' ' ' | \
-	awk '{printf("v%d.%d", $$2, $$3+1);}')"; \
-	echo git tag "$${BUMP_REVISION}" master; \
-	echo git push origin "$${BUMP_REVISION}"
+	@\
+	BUMP_REVISION="$$(git tag | grep -E '[v]*[0-9]+.[0-9]+' | sed -E 's/v[\.\:]*([0-9])\.([0-9]*)$$/\1 \2/' | \
+	awk '{printf("v%*d%*d-%d-%d\n", 3, $$1, 5, $$2, $$1, $$2)}' | tr ' ' '0' | sort | tail -n1 | tr '-' ' ' | \
+	awk '{printf("v%d.%d", $$2, $$3+1)}')"; \
+	git tag """$${BUMP_REVISION}""" master; \
+	git push origin "$${BUMP_REVISION}"
 
 
 

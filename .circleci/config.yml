@@ -125,6 +125,12 @@ jobs:
           file: .circleci/build/worker.Dockerfile
           tag: api
 
+      - run:
+          name: Everything runs on rails, right?! Let's deploy then!
+          command: |
+            make tag
+            make about
+
 
 
   deploy:
