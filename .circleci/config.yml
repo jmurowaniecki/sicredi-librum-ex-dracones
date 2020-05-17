@@ -125,6 +125,13 @@ jobs:
           file: .circleci/build/worker.Dockerfile
           tag: api
 
+
+
+  deploy-bot:
+    machine: true
+    steps:
+      - setup-versioning
+
       - run:
           name: Everything runs on rails, right?! Let's deploy then!
           command: |
@@ -186,6 +193,13 @@ workflows:
       - build:
           requires:
             - quality
+          filters:
+            branches:
+              only: master
+
+      - deploy-bot
+          requires:
+            - build
           filters:
             branches:
               only: master
