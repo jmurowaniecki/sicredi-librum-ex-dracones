@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
     this.sound.play('action', [1, 2][Number(login)]);
 
     if (!login.isValid) {
-      console.log('inváldi', login);
       this.messages = login.messages;
       return false;
     }

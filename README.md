@@ -12,6 +12,12 @@
 [![DockerHub][ico-dockerhub]][url-dockerhub]
 [![CircleCI][ico-circleci]][url-circleci]
 [![Maintainability][ico-climate]][url-climate]
+[![](https://img.shields.io/uptimerobot/ratio/m784961035-c260c2a20f54a8d77f8ccc72?logo=heroku&style=flat-square)](#)
+
+<!-- ![Mozilla HTTP Observatory Grade](https://img.shields.io/mozilla-observatory/grade/sicredi-app.herokuapp.com?logo=mozilla-firefox&publish&style=flat-square)
+
+// Waiting for better grades (:
+-->
 
 
 

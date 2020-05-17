@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Dragon } from '../dragon';
+import { Dragon, DragonType, COMMON_DRAGON_TYPES } from '../dragon';
 
 
 
@@ -29,6 +29,8 @@ export class DragonsService {
 
   public Lair: Dragon[] | any = [];
 
+  public Types: DragonType[] = COMMON_DRAGON_TYPES;
+
   public New(): Dragon {
     return {
       id: '{{i}}',
@@ -46,8 +48,26 @@ export class DragonsService {
 
 
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+  ) {}
 
+
+
+  public apply(dragon: Dragon, target: Dragon | any = false): Dragon {
+    try {
+      const dragonType = this.Types.filter(e => e.value === dragon.type).pop();
+      ['avatar', 'imageUrl', 'landscape', 'position', 'label'].forEach(type => {
+        dragon[type] = dragonType[type];
+      });
+    } catch (e) {
+      console.error('Cannot apply dragon type');
+    }
+    if (target) {
+      Object.assign(target, dragon);
+    }
+    return dragon;
+  }
 
 
   public UnleashThemAll(): void {
@@ -60,8 +80,8 @@ export class DragonsService {
         dragons
           .forEach((that: Dragon) => {
             if (!this.exists(that)) {
-              this.Lair.push(that);
-              this.grimoire.push(that.name);
+              this.Lair.push(this.apply(that));
+              this.grimoire.push(that.id);
             }
           });
 
@@ -72,7 +92,7 @@ export class DragonsService {
   }
 
   public exists(dragon: Dragon): boolean {
-    return this.grimoire.indexOf(dragon.name) !== -1;
+    return this.grimoire.indexOf(dragon.id) !== -1;
   }
 
   public Get(id: number, getFirst: boolean = GET_EMPTY, defaultDragon: any = false): Dragon | any {
@@ -86,10 +106,11 @@ export class DragonsService {
   public Post(dragon: Dragon): any {
     const isNew = dragon.id === '{{i}}';
     let method = () => this.http.put(API_ENDPOINT.concat('/', dragon.id), dragon);
-
     if (isNew) {
-      method = (() => this.http.post(API_ENDPOINT, dragon));
       dragon.createdAt = (new Date()).toISOString();
+      method = (() => this.http.post(API_ENDPOINT, dragon));
+    } else {
+      this.apply(dragon, this.Lair[this.Lair.findIndex(test => test.id === dragon.id)]);
     }
     return new Promise(done => method().subscribe(() => this.Refresh().then(() => done())));
   }

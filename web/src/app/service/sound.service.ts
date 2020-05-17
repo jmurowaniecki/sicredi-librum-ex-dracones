@@ -91,7 +91,7 @@ export class SoundService {
     try {
       return this.preLoaded[type][record].play();
     } catch (e) {
-      console.log('Error playing', this.preLoaded[type][record]);
+      console.error('Error playing', this.preLoaded[type][record]);
     }
   }
 }
