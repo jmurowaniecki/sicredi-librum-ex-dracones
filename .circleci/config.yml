@@ -197,7 +197,7 @@ workflows:
             branches:
               only: master
 
-      - deploy-bot
+      - deploy-bot:
           requires:
             - build
           filters:
